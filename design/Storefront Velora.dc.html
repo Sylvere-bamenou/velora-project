@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F5F1E8; --paper:#FCFAF4; --paper-2:#FFFFFF;
+  --ink:#1B1813; --ink-2:#4A4438; --ink-3:#867E6D;
+  --line:#E6DFD0; --line-strong:#D4CAB4; --onyx:#141109;
+  --gold:#B7923F; --gold-strong:#8A6B28; --gold-tint:#EFE7D2;
+  --success:#3E8E5A; --success-tint:#E4EFE7; --danger:#BC3B32; --danger-tint:#F5E1DE;
+  --r-sm:4px; --r-md:8px; --r-lg:14px; --r-pill:999px;
+  --serif:'Spectral',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#E9E4D8;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-feature-settings:'tnum' on,'lnum' on;}
+a{color:var(--gold-strong);text-decoration:none;} a:hover{color:var(--ink);}
+::selection{background:var(--gold-tint);}
+.vel-scroll::-webkit-scrollbar{width:0;height:0;}
+@keyframes vel-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes vel-pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:22px;padding:40px 16px 60px;background:radial-gradient(120% 80% at 50% 0%,#F2EDE1,#E4DFD2);">
+
+  <!-- caption -->
+  <div style="text-align:center;max-width:520px;">
+    <div style="font-family:var(--serif);font-size:20px;letter-spacing:.24em;padding-left:.24em;color:var(--ink);">VELORA</div>
+    <div style="font-size:12.5px;color:var(--ink-3);margin-top:6px;">Prototype storefront · arrivée directe sur produit depuis une pub · paiement à la livraison</div>
+  </div>
+
+  <!-- PHONE -->
+  <div style="width:390px;height:812px;background:#000;border-radius:44px;padding:11px;box-shadow:0 40px 90px -30px rgba(27,24,19,.55),0 0 0 2px #1a1a1a;flex:none;">
+    <div class="vel-scroll" style="position:relative;width:100%;height:100%;background:var(--paper);border-radius:34px;overflow:hidden;display:flex;flex-direction:column;">
+
+      <!-- status bar -->
+      <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:10px 24px 6px;font-size:13px;font-weight:600;color:var(--ink);">
+        <span style="font-variant-numeric:tabular-nums;">9:41</span>
+        <span style="display:flex;gap:5px;align-items:center;font-size:11px;">●●● ▪ ▮</span>
+      </div>
+
+      <!-- top brand bar -->
+      <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:8px 18px 12px;border-bottom:1px solid var(--line);">
+        <sc-if value="{{ showBack }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ back }}" style="border:none;background:none;font-size:20px;color:var(--ink);cursor:pointer;padding:0 6px 0 0;line-height:1;">‹</button>
+        </sc-if>
+        <span style="font-family:var(--serif);font-size:18px;letter-spacing:.24em;padding-left:.24em;color:var(--ink);flex:1;text-align:center;">VELORA</span>
+        <span style="font-size:20px;color:var(--ink-2);width:26px;text-align:right;">{{ topRightGlyph }}</span>
+      </div>
+
+      <!-- ============ SCROLL AREA ============ -->
+      <div class="vel-scroll" style="flex:1;overflow-y:auto;">
+
+        <!-- ---------- PRODUCT ---------- -->
+        <sc-if value="{{ isProduct }}" hint-placeholder-val="{{ true }}">
+        <div style="animation:vel-in .3s ease;">
+          <!-- gallery -->
+          <div style="position:relative;background:var(--ivory);">
+            <sc-if value="{{ mainImg }}"><img src="{{ mainImg }}" alt="Montre chronographe" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;" /></sc-if>
+            <sc-if value="{{ hasPromo }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;top:14px;left:14px;background:var(--danger);color:#fff;font-size:12px;font-weight:700;border-radius:var(--r-sm);padding:4px 9px;">−29 %</span></sc-if>
+          </div>
+          <div style="display:flex;gap:8px;padding:12px 18px 4px;">
+            <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="3">
+              <button onClick="{{ t.pick }}" style="width:58px;height:58px;border-radius:var(--r-md);overflow:hidden;border:1px solid {{ t.border }};padding:0;background:var(--ivory);cursor:pointer;flex:none;">
+                <sc-if value="{{ t.img }}"><img src="{{ t.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" /></sc-if>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="padding:14px 18px 20px;">
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-strong);">Montres · acier</div>
+            <h1 style="font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;margin:6px 0 0;">Montre chronographe acier</h1>
+
+            <!-- price -->
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 2px;">
+              <div style="display:flex;align-items:baseline;gap:7px;"><span style="font-size:30px;font-weight:600;color:var(--danger);font-variant-numeric:tabular-nums;letter-spacing:-.01em;">{{ unitStr }}</span><span style="font-size:13px;color:var(--ink-3);">FCFA</span></div>
+              <span style="font-size:15px;color:var(--ink-3);text-decoration:line-through;font-variant-numeric:tabular-nums;">{{ unitOldStr }} FCFA</span>
+            </div>
+            <div style="font-size:12.5px;color:var(--success);font-weight:600;">Vous économisez {{ unitSaveStr }} FCFA</div>
+
+            <!-- couleur -->
+            <div style="margin-top:22px;font-size:13px;color:var(--ink-2);margin-bottom:9px;">Couleur — <b style="color:var(--ink);">{{ color }}</b></div>
+            <div style="display:flex;gap:12px;">
+              <sc-for list="{{ colorOpts }}" as="c" hint-placeholder-count="2">
+                <button onClick="{{ c.pick }}" title="{{ c.name }}" style="width:38px;height:38px;border-radius:50%;background:{{ c.swatch }};border:1px solid var(--line-strong);outline:{{ c.outline }};outline-offset:2px;cursor:pointer;padding:0;"></button>
+              </sc-for>
+            </div>
+
+            <!-- taille -->
+            <div style="margin-top:20px;font-size:13px;color:var(--ink-2);margin-bottom:9px;">Boîtier</div>
+            <div style="display:flex;gap:8px;">
+              <sc-for list="{{ sizeOpts }}" as="s" hint-placeholder-count="2">
+                <button onClick="{{ s.pick }}" style="padding:10px 16px;border-radius:var(--r-md);font-family:var(--sans);font-size:13px;font-weight:{{ s.weight }};cursor:pointer;border:1px solid {{ s.border }};background:{{ s.bg }};color:{{ s.color }};">{{ s.label }}</button>
+              </sc-for>
+            </div>
+
+            <!-- pack -->
+            <div style="margin-top:20px;font-size:13px;color:var(--ink-2);margin-bottom:9px;">Pack</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ packOpts }}" as="p" hint-placeholder-count="3">
+                <button onClick="{{ p.pick }}" style="display:flex;align-items:center;justify-content:space-between;text-align:left;padding:12px 14px;border-radius:var(--r-md);cursor:pointer;border:1px solid {{ p.border }};background:{{ p.bg }};">
+                  <span style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:18px;height:18px;border-radius:50%;border:2px solid {{ p.dot }};display:inline-flex;align-items:center;justify-content:center;"><span style="width:8px;height:8px;border-radius:50%;background:{{ p.dotFill }};"></span></span>
+                    <span style="font-size:14px;font-weight:600;color:var(--ink);">{{ p.label }}</span>
+                    <sc-if value="{{ p.tag }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;color:var(--gold-strong);background:var(--gold-tint);border-radius:var(--r-sm);padding:2px 6px;">{{ p.tag }}</span></sc-if>
+                  </span>
+                  <span style="font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;">{{ p.priceStr }} FCFA</span>
+                </button>
+              </sc-for>
+            </div>
+
+            <!-- réassurance -->
+            <div style="margin-top:22px;background:var(--onyx);border-radius:var(--r-lg);padding:16px 18px;">
+              <sc-for list="{{ reassure }}" as="r" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:11px;padding:7px 0;">
+                  <span style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;"></span>
+                  <span style="font-size:13.5px;color:#EFE9DC;">{{ r }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="height:8px;"></div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- ---------- ORDER FORM ---------- -->
+        <sc-if value="{{ isOrder }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:18px 18px 20px;animation:vel-in .3s ease;">
+          <h2 style="font-family:var(--serif);font-weight:500;font-size:22px;margin:2px 0 4px;">Vos coordonnées</h2>
+          <p style="margin:0 0 18px;font-size:13px;color:var(--ink-3);line-height:1.5;">On vous appelle pour confirmer avant l'envoi. Aucun paiement en ligne.</p>
+
+          <!-- recap -->
+          <div style="display:flex;gap:12px;align-items:center;background:var(--ivory);border:1px solid var(--line);border-radius:var(--r-md);padding:11px;margin-bottom:20px;">
+            <sc-if value="{{ mainImg }}"><img src="{{ mainImg }}" alt="" style="width:52px;height:52px;border-radius:var(--r-sm);object-fit:cover;flex:none;" /></sc-if>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13.5px;font-weight:600;line-height:1.25;">Montre chronographe acier</div>
+              <div style="font-size:12px;color:var(--ink-3);">{{ color }} · {{ size }} · Pack {{ packLabel }}</div>
+            </div>
+            <div style="text-align:right;"><div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">{{ totalStr }}</div><div style="font-size:10.5px;color:var(--ink-3);">FCFA</div></div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <label style="display:block;">
+              <span style="font-size:12px;color:var(--ink-2);">Nom complet</span>
+              <input value="{{ name }}" onInput="{{ onName }}" placeholder="Ex. Kofi Mensah" style="margin-top:5px;width:100%;border:1px solid {{ errName ? 'var(--danger)' : 'var(--line-strong)' }};border-radius:var(--r-md);padding:12px 13px;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper-2);outline:none;" style-focus="border-color:var(--gold);" />
+              <sc-if value="{{ errName }}" hint-placeholder-val="{{ true }}"><span style="font-size:11.5px;color:var(--danger);">Indiquez votre nom.</span></sc-if>
+            </label>
+            <label style="display:block;">
+              <span style="font-size:12px;color:var(--ink-2);">Téléphone (WhatsApp de préférence)</span>
+              <input value="{{ phone }}" onInput="{{ onPhone }}" inputmode="tel" placeholder="+229 01 97 00 00 00" style="margin-top:5px;width:100%;border:1px solid {{ errPhone ? 'var(--danger)' : 'var(--line-strong)' }};border-radius:var(--r-md);padding:12px 13px;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper-2);outline:none;font-variant-numeric:tabular-nums;" style-focus="border-color:var(--gold);" />
+              <sc-if value="{{ errPhone }}" hint-placeholder-val="{{ true }}"><span style="font-size:11.5px;color:var(--danger);">Numéro à 8 chiffres minimum.</span></sc-if>
+            </label>
+            <label style="display:block;">
+              <span style="font-size:12px;color:var(--ink-2);">Ville</span>
+              <input value="{{ city }}" onInput="{{ onCity }}" style="margin-top:5px;width:100%;border:1px solid var(--line-strong);border-radius:var(--r-md);padding:12px 13px;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper-2);outline:none;" style-focus="border-color:var(--gold);" />
+            </label>
+            <label style="display:block;">
+              <span style="font-size:12px;color:var(--ink-2);">Adresse / repère de livraison</span>
+              <input value="{{ address }}" onInput="{{ onAddress }}" placeholder="Quartier, repère proche…" style="margin-top:5px;width:100%;border:1px solid {{ errAddr ? 'var(--danger)' : 'var(--line-strong)' }};border-radius:var(--r-md);padding:12px 13px;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper-2);outline:none;" style-focus="border-color:var(--gold);" />
+              <sc-if value="{{ errAddr }}" hint-placeholder-val="{{ true }}"><span style="font-size:11.5px;color:var(--danger);">Indiquez un repère de livraison.</span></sc-if>
+            </label>
+          </div>
+
+          <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:baseline;padding:14px 2px;border-top:1px solid var(--line);">
+            <span style="font-size:13px;color:var(--ink-2);">À régler au livreur</span>
+            <div style="display:flex;align-items:baseline;gap:6px;"><span style="font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;">{{ totalStr }}</span><span style="font-size:12px;color:var(--ink-3);">FCFA</span></div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- ---------- CONFIRMATION ---------- -->
+        <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:44px 24px;text-align:center;animation:vel-in .35s ease;">
+          <div style="width:76px;height:76px;border-radius:50%;background:var(--success-tint);display:flex;align-items:center;justify-content:center;margin:0 auto;animation:vel-pop .45s ease;">
+            <span style="color:var(--success);font-size:38px;line-height:1;">✓</span>
+          </div>
+          <h2 style="font-family:var(--serif);font-weight:500;font-size:24px;margin:22px 0 0;">Commande enregistrée</h2>
+          <p style="margin:12px 0 0;font-size:14.5px;line-height:1.6;color:var(--ink-2);">Merci {{ firstName }}. <b>On vous appelle pour confirmer</b> sur le {{ phone }}, puis le livreur passe.</p>
+
+          <div style="margin-top:26px;text-align:left;background:var(--ivory);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;"><span style="color:var(--ink-3);">Commande</span><span style="font-family:var(--mono);color:var(--ink);">{{ orderNo }}</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;"><span style="color:var(--ink-3);">Article</span><span style="color:var(--ink);text-align:right;">Chrono acier · {{ color }} · {{ packLabel }}</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;"><span style="color:var(--ink-3);">Livraison</span><span style="color:var(--ink);">{{ city }} · 24–48 h</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;font-size:13px;padding:10px 0 2px;margin-top:6px;border-top:1px solid var(--line);"><span style="color:var(--ink-2);font-weight:600;">À payer en espèces</span><span style="font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;">{{ totalStr }} <span style="font-size:11px;color:var(--ink-3);font-weight:400;">FCFA</span></span></div>
+          </div>
+
+          <div style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12.5px;color:var(--ink-3);line-height:1.5;">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></span>Vous inspectez l'article avant de régler.
+          </div>
+        </div>
+        </sc-if>
+
+      </div>
+
+      <!-- ============ STICKY FOOTER ============ -->
+      <div style="flex:none;padding:12px 18px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--paper);">
+        <sc-if value="{{ isProduct }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ goOrder }}" style="width:100%;background:var(--ink);color:var(--paper);border:none;border-radius:var(--r-md);padding:16px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;" style-hover="background:#000;">
+            Commander — je paie à la livraison
+            <span style="font-variant-numeric:tabular-nums;opacity:.75;">· {{ totalStr }}</span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ isOrder }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ submit }}" style="width:100%;background:var(--ink);color:var(--paper);border:none;border-radius:var(--r-md);padding:16px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;" style-hover="background:#000;">Confirmer ma commande</button>
+          <div style="text-align:center;font-size:11.5px;color:var(--ink-3);margin-top:8px;">Paiement en espèces à la réception · sans engagement en ligne</div>
+        </sc-if>
+        <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ back }}" style="width:100%;background:var(--paper);color:var(--ink);border:1px solid var(--line-strong);border-radius:var(--r-md);padding:15px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;" style-hover="border-color:var(--ink);">Continuer mes achats</button>
+        </sc-if>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="font-size:12px;color:var(--ink-3);max-width:420px;text-align:center;line-height:1.5;">Choisissez une variante, un pack — le prix se met à jour. Le bouton mène au tunnel COD, puis à la confirmation. Aucun montant n'est jamais demandé en ligne.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:440,&quot;height&quot;:940}}">
+class Component extends DCLogic {
+  state = { screen:'product', color:'Noir', size:'40 mm', pack:'x1', name:'', phone:'', city:'Cotonou', address:'', touched:false, orderNo:'' };
+
+  fmt(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+
+  set(k,v){ this.setState({[k]:v}); }
+
+  packs(){ return [
+    {id:'x1',label:'×1',qty:1,disc:0,tag:''},
+    {id:'x3',label:'×3',qty:3,disc:.15,tag:'−15 %'},
+    {id:'x5',label:'×5',qty:5,disc:.20,tag:'−20 %'},
+  ]; }
+
+  current(){
+    const p = this.packs().find(x=>x.id===this.state.pack) || this.packs()[0];
+    const unit = 25000, unitOld = 35000;
+    const total = Math.round(unit*p.qty*(1-p.disc));
+    const oldTotal = unitOld*p.qty;
+    return {p, unit, unitOld, total, oldTotal};
+  }
+
+  submit(){
+    const {name,phone,address} = this.state;
+    const errName = !name.trim();
+    const errPhone = phone.replace(/\D/g,'').length < 8;
+    const errAddr = !address.trim();
+    if(errName||errPhone||errAddr){ this.setState({touched:true}); return; }
+    const no = 'VLR-BJ-' + Math.floor(100000+Math.random()*900000);
+    this.setState({screen:'confirm', orderNo:no});
+  }
+
+  renderVals(){
+    const s = this.state;
+    const imgs = { Noir:'assets/prod-chrono.png', Or:'assets/prod-watch-gold.png' };
+    const mainImg = imgs[s.color];
+    const {p, unit, unitOld, total, oldTotal} = this.current();
+    const touched = s.touched;
+    const errName = touched && !s.name.trim();
+    const errPhone = touched && s.phone.replace(/\D/g,'').length < 8;
+    const errAddr = touched && !s.address.trim();
+
+    const gallery = [imgs[s.color], 'assets/photo-detail.png', 'assets/photo-lifestyle.png'];
+
+    return {
+      isProduct: s.screen==='product',
+      isOrder: s.screen==='order',
+      isConfirm: s.screen==='confirm',
+      showBack: s.screen!=='product',
+      topRightGlyph: s.screen==='product' ? '⌕' : ' ',
+      hasPromo: true,
+
+      mainImg,
+      thumbs: gallery.map((img,i)=>({
+        img,
+        border: img===mainImg ? 'var(--gold)' : 'var(--line)',
+        pick: ()=>{ if(i===0) return; /* thumbs are gallery views, main stays product */ },
+      })),
+
+      color: s.color,
+      size: s.size,
+      packLabel: p.label,
+
+      unitStr: this.fmt(unit), unitOldStr: this.fmt(unitOld), unitSaveStr: this.fmt(unitOld-unit),
+      totalStr: this.fmt(total), oldTotalStr: this.fmt(oldTotal),
+
+      colorOpts: [
+        {name:'Noir', swatch:'#1b1813', outline: s.color==='Noir'?'2px solid var(--gold)':'2px solid transparent', pick:()=>this.set('color','Noir')},
+        {name:'Or',   swatch:'#c8a24a', outline: s.color==='Or'?'2px solid var(--gold)':'2px solid transparent', pick:()=>this.set('color','Or')},
+      ],
+      sizeOpts: ['40 mm','42 mm'].map(sz=>({
+        label:sz,
+        pick:()=>this.set('size',sz),
+        border: s.size===sz?'var(--gold)':'var(--line-strong)',
+        bg: s.size===sz?'var(--gold-tint)':'var(--paper)',
+        color: s.size===sz?'var(--ink)':'var(--ink-2)',
+        weight: s.size===sz?'600':'400',
+      })),
+      packOpts: this.packs().map(x=>{
+        const active = s.pack===x.id;
+        const tot = Math.round(unit*x.qty*(1-x.disc));
+        return {
+          label: x.label, tag: x.tag, priceStr: this.fmt(tot),
+          pick:()=>this.set('pack',x.id),
+          border: active?'var(--gold)':'var(--line-strong)',
+          bg: active?'var(--gold-tint)':'var(--paper)',
+          dot: active?'var(--gold)':'var(--line-strong)',
+          dotFill: active?'var(--gold)':'transparent',
+        };
+      }),
+
+      reassure: ['Livré chez vous en 24–48 h','Vous inspectez avant de payer','Paiement en espèces au livreur'],
+
+      name:s.name, phone:s.phone, city:s.city, address:s.address,
+      firstName: (s.name.trim().split(/\s+/)[0]) || '',
+      errName, errPhone, errAddr,
+      orderNo: s.orderNo,
+
+      onName:  e=>this.set('name', e.target.value),
+      onPhone: e=>this.set('phone', e.target.value),
+      onCity:  e=>this.set('city', e.target.value),
+      onAddress: e=>this.set('address', e.target.value),
+
+      goOrder: ()=>this.setState({screen:'order'}),
+      back: ()=>{ if(s.screen==='confirm'){ this.setState({screen:'product',touched:false,name:'',phone:'',address:''}); } else { this.setState({screen:'product'}); } },
+      submit: ()=>this.submit(),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* ============================================================
+ * Velora · Jetons de design
+ * Source de vérité : Claude Design → « Identité Velora.dc.html » (§11)
+ * Extrait automatiquement — ne pas éditer à la main.
+ * Toute évolution part du fichier d'identité, puis est ré-extraite.
+ * ============================================================ */
+
+:root {
+  /* ——— NEUTRES · thème clair (dominant) ——— */
+  --ivory:        #F5F1E8;   /* fond de page */
+  --paper:        #FCFAF4;   /* surface / carte */
+  --paper-2:      #FFFFFF;   /* champ, surface haute */
+  --ink:          #1B1813;   /* texte primaire   · 14.9:1 sur ivory · AAA */
+  --ink-2:        #4A4438;   /* texte secondaire ·  8.1:1 sur ivory · AAA */
+  --ink-3:        #867E6D;   /* muté / placeholder · 3.6:1 · grand texte */
+  --line:         #E6DFD0;   /* bordure discrète */
+  --line-strong:  #D4CAB4;   /* bordure appuyée */
+  --onyx:         #141109;   /* fond sombre / logo contexte */
+
+  /* ——— ACCENT MARQUE · champagne ——— */
+  --gold:         #B7923F;   /* décor, filets, monogramme */
+  --gold-strong:  #8A6B28;   /* texte/lien accent · 4.8:1 sur ivory · AA */
+  --gold-tint:    #EFE7D2;   /* surface accent douce */
+
+  /* ——— SÉMANTIQUE · dashboard (ne jure pas avec l'or) ——— */
+  --success:      #3E8E5A;   --success-tint: #E4EFE7;   /* accepté / livré */
+  --warning:      #C7811A;   --warning-tint: #F6ECD6;   /* vérif. manuelle */
+  --danger:       #BC3B32;   --danger-tint:  #F5E1DE;   /* blocage / promo */
+  --info:         #3F6E9C;   --info-tint:    #E3EAF1;   /* neutre info */
+
+  /* ——— TYPOGRAPHIE ——— */
+  --serif: 'Spectral', Georgia, serif;         /* logotype + titres */
+  --sans:  'IBM Plex Sans', system-ui, sans-serif; /* UI, corps, PRIX (tnum) */
+  --mono:  ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* échelle · rem base 16px */
+  --t-display:3.5rem; --t-h1:2rem;  --t-h2:1.5rem; --t-h3:1.25rem;
+  --t-body-l:1.125rem; --t-body:1rem; --t-body-s:0.875rem; --t-caption:0.8125rem;
+
+  /* ——— ESPACEMENTS · échelle 4px ——— */
+  --s-1:4px;  --s-2:8px;  --s-3:12px; --s-4:16px;
+  --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+
+  /* ——— RAYONS ——— */
+  --r-sm:4px; --r-md:8px; --r-lg:14px; --r-pill:999px;
+
+  /* ——— OMBRES · teintées chaud ——— */
+  --sh-sm:0 1px 2px      rgba(27,24,19,.06);
+  --sh-md:0 6px 20px -6px rgba(27,24,19,.16);
+  --sh-lg:0 18px 48px -12px rgba(27,24,19,.24);
+}
+
+/* ——— THÈME SOMBRE · réassigne les couleurs seulement ——— */
+[data-theme="onyx"] {
+  --ivory:#141109; --paper:#1E1A12; --paper-2:#252017;
+  --ink:#F3EEE2; --ink-2:#C9C1AF; --ink-3:#8F8874;
+  --line:#312A1E; --line-strong:#463D2C; --onyx:#0E0C08;
+  --gold:#CBA24E; --gold-strong:#E3C275; --gold-tint:#2A2314;
+}

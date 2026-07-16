@@ -1,0 +1,13 @@
+/**
+ * Raccorde les polices auto-hébergées par next/font aux jetons du guide.
+ *
+ * tokens.css déclare --serif / --sans avec les noms de familles bruts
+ * ('Spectral', 'IBM Plex Sans'), ce qui suppose que les polices sont chargées
+ * par ailleurs. Ici next/font les héberge et expose --font-serif / --font-sans :
+ * on réassigne les deux jetons pour pointer dessus, en gardant les mêmes
+ * fallbacks. Aucun autre jeton n'est touché.
+ */
+:root {
+  --serif: var(--font-serif), Georgia, serif;
+  --sans: var(--font-sans), system-ui, sans-serif;
+}

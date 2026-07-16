@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ——— Couleurs · neutres (thème clair, dominant) ——— */
+  --ivory:#F5F1E8; --paper:#FCFAF4; --paper-2:#FFFFFF;
+  --ink:#1B1813; --ink-2:#4A4438; --ink-3:#867E6D;
+  --line:#E6DFD0; --line-strong:#D4CAB4;
+  --onyx:#141109;
+  /* ——— Accent marque (champagne) ——— */
+  --gold:#B7923F; --gold-strong:#8A6B28; --gold-tint:#EFE7D2;
+  /* ——— Sémantique (dashboard) ——— */
+  --success:#3E8E5A; --success-tint:#E4EFE7;
+  --warning:#C7811A; --warning-tint:#F6ECD6;
+  --danger:#BC3B32;  --danger-tint:#F5E1DE;
+  --info:#3F6E9C;    --info-tint:#E3EAF1;
+  /* ——— Rayons ——— */
+  --r-sm:4px; --r-md:8px; --r-lg:14px; --r-pill:999px;
+  /* ——— Ombres (teintées chaud) ——— */
+  --sh-sm:0 1px 2px rgba(27,24,19,.06);
+  --sh-md:0 6px 20px -6px rgba(27,24,19,.16);
+  --sh-lg:0 18px 48px -12px rgba(27,24,19,.24);
+  /* ——— Type ——— */
+  --serif:'Spectral',Georgia,serif;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-feature-settings:'tnum' on,'lnum' on;}
+a{color:var(--gold-strong);text-decoration:none;}
+a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
+h1,h2,h3{margin:0;font-weight:500;font-family:var(--serif);letter-spacing:-.01em;}
+::selection{background:var(--gold-tint);}
+@keyframes velo-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--ivory);">
+<!-- ===================== TOP BAR ===================== -->
+<div style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:58px;background:color-mix(in srgb,var(--ivory) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
+  <div style="display:flex;align-items:center;gap:14px;">
+    <span style="font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:.26em;padding-left:.26em;">VELORA</span>
+    <span style="width:1px;height:18px;background:var(--line-strong);"></span>
+    <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);">Guide d'identité visuelle</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <span style="font-size:12px;color:var(--ink-3);">v1.0 · Juillet 2025</span>
+    <span style="display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-2);border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:5px 12px;">FCFA · XOF / XAF</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:236px minmax(0,1fr);gap:0;max-width:1280px;margin:0 auto;">
+  <!-- ===================== SIDE NAV ===================== -->
+  <aside style="position:sticky;top:58px;align-self:start;height:calc(100vh - 58px);overflow-y:auto;padding:34px 22px 60px;border-right:1px solid var(--line);">
+    <sc-for list="{{ nav }}" as="item" hint-placeholder-count="11">
+      <a href="{{ item.href }}" style="display:flex;align-items:baseline;gap:10px;padding:8px 10px;border-radius:var(--r-sm);color:var(--ink-2);font-size:13.5px;line-height:1.35;">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--gold-strong);min-width:20px;">{{ item.num }}</span>
+        <span>{{ item.label }}</span>
+      </a>
+    </sc-for>
+    <div style="margin-top:26px;padding:14px;border:1px dashed var(--line-strong);border-radius:var(--r-md);font-size:11.5px;line-height:1.5;color:var(--ink-3);">
+      Système prêt pour l'implémentation. Jetons en variables CSS, section&nbsp;11.
+    </div>
+  </aside>
+
+  <!-- ===================== CONTENT ===================== -->
+  <main style="padding:0 0 120px;">
+
+  <!-- ---------- HERO ---------- -->
+  <section style="padding:76px 56px 64px;border-bottom:1px solid var(--line);">
+    <div style="font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--gold-strong);text-transform:uppercase;margin-bottom:26px;">Mode masculine premium · Afrique de l'Ouest &amp; Centrale</div>
+    <h1 style="font-size:clamp(52px,7vw,92px);line-height:.98;font-weight:400;letter-spacing:-.02em;max-width:14ch;">Une belle marque, qui se trouve être la sienne.</h1>
+    <p style="max-width:56ch;margin:26px 0 0;font-size:18px;line-height:1.62;color:var(--ink-2);">La confiance ne repose sur aucun logo de carte bancaire — le client paie en espèces, à sa porte. Elle repose entièrement sur l'apparence de la marque. Ce guide définit comment Velora en impose, du fil TikTok à la vignette de 32&nbsp;px, sans folklore ni cliché dropshipping.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;">
+      <sc-for list="{{ heroTags }}" as="t" hint-placeholder-count="4">
+        <span style="font-size:13px;color:var(--ink-2);border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:8px 15px;background:var(--paper);">{{ t }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ---------- 01 PLATEFORME ---------- -->
+  <section id="plateforme" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:30px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">01</span><h2 style="font-size:30px;">Plateforme de marque</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;">
+      <sc-for list="{{ platform }}" as="p" hint-placeholder-count="3">
+        <div style="background:var(--paper);padding:26px;">
+          <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-strong);margin-bottom:12px;">{{ p.k }}</div>
+          <div style="font-size:16px;line-height:1.6;color:var(--ink-2);">{{ p.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:var(--gold-tint);border:1px solid var(--line-strong);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:8px;">Velora est —</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink-2);">Premium contemporain, sobre, confiant. Une marque mondiale qui parle français et livre à Cotonou.</p>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:8px;">Velora n'est pas —</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink-3);">Une « marque africaine » folklorique. Ni un dropshipping à compte à rebours et badges empilés.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 02 LOGO ---------- -->
+  <section id="logo" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:30px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">02</span><h2 style="font-size:30px;">Logo</h2></div>
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;">
+      <!-- wordmark clair -->
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+        <span style="font-family:var(--serif);font-weight:500;font-size:52px;letter-spacing:.28em;padding-left:.28em;color:var(--ink);">VELORA</span>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--ink-3);">Logotype principal · Spectral Medium · tracking .28em</span>
+      </div>
+      <!-- wordmark onyx -->
+      <div style="background:var(--onyx);border:1px solid var(--onyx);border-radius:var(--r-lg);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+        <span style="font-family:var(--serif);font-weight:500;font-size:44px;letter-spacing:.28em;padding-left:.28em;color:#F5F1E8;">VELORA</span>
+        <span style="font-family:var(--mono);font-size:11px;color:#9a9484;">Sur fond onyx · l'accent or reste réservé aux détails</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px;">
+      <!-- monogram -->
+      <div style="background:var(--onyx);border-radius:var(--r-lg);aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;">
+        <span style="font-family:var(--serif);font-weight:500;font-size:78px;color:#F5F1E8;line-height:1;">V</span>
+        <span style="position:absolute;bottom:12px;right:14px;width:8px;height:8px;border-radius:50%;background:var(--gold);"></span>
+      </div>
+      <div style="background:var(--gold);border-radius:var(--r-lg);aspect-ratio:1;display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:var(--serif);font-weight:500;font-size:78px;color:var(--onyx);line-height:1;">V</span>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
+        <span style="font-family:var(--serif);font-weight:500;font-size:32px;color:var(--ink);line-height:1;">V</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3);">favicon 32px</span>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:14px;text-align:center;">
+        <span style="font-family:var(--serif);font-weight:500;font-size:16px;letter-spacing:.06em;color:var(--ink);line-height:1;">V</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3);">16px — reste lisible</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-strong);margin-bottom:14px;">Zone de protection</div>
+        <div style="position:relative;background:var(--ivory);border:1px dashed var(--line-strong);border-radius:var(--r-md);padding:34px;display:flex;align-items:center;justify-content:center;">
+          <div style="border:1px dashed var(--gold);padding:22px 26px;"><span style="font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:.28em;padding-left:.28em;">VELORA</span></div>
+        </div>
+        <p style="margin:14px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink-2);">Marge libre minimale = hauteur du « V » sur les quatre côtés. Aucun élément, texte ou bord ne pénètre cette zone.</p>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-strong);margin-bottom:14px;">Tailles minimales</div>
+        <sc-for list="{{ logoSizes }}" as="s" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;">
+            <span style="color:var(--ink-2);">{{ s.ctx }}</span><span style="font-family:var(--mono);color:var(--ink);">{{ s.size }}</span>
+          </div>
+        </sc-for>
+        <p style="margin:14px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink-3);">En dessous de la taille min. du logotype, on bascule sur le monogramme « V ».</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 03 PALETTE ---------- -->
+  <section id="palette" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">03</span><h2 style="font-size:30px;">Palette</h2></div>
+    <p style="max-width:60ch;margin:0 0 28px;font-size:15px;line-height:1.6;color:var(--ink-2);">Un seul accent — le champagne — porte le premium. Les neutres sont chauds. Le triplet sémantique est calibré pour un dashboard dense sans jamais jurer avec l'or.</p>
+
+    <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:12px;">Accent marque</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:30px;">
+      <sc-for list="{{ swAccent }}" as="c" hint-placeholder-count="3">
+        <div style="border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--paper);">
+          <div style="height:88px;background:{{ c.bg }};"></div>
+          <div style="padding:14px;">
+            <div style="font-size:14px;font-weight:600;color:var(--ink);">{{ c.name }}</div>
+            <div style="font-family:var(--mono);font-size:12px;color:var(--ink-2);margin:3px 0;">{{ c.hex }}</div>
+            <div style="font-size:12px;color:var(--ink-3);line-height:1.45;">{{ c.role }}</div>
+            <div style="margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--ink-2);">{{ c.wcag }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:12px;">Neutres</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:12px;margin-bottom:30px;">
+      <sc-for list="{{ swNeutral }}" as="c" hint-placeholder-count="7">
+        <div style="border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--paper);">
+          <div style="height:60px;background:{{ c.bg }};border-bottom:1px solid var(--line);"></div>
+          <div style="padding:10px 12px;">
+            <div style="font-size:13px;font-weight:600;">{{ c.name }}</div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--ink-2);">{{ c.hex }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:12px;">Sémantique · dashboard</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:34px;">
+      <sc-for list="{{ swSemantic }}" as="c" hint-placeholder-count="4">
+        <div style="border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--paper);">
+          <div style="height:56px;background:{{ c.bg }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;">{{ c.tag }}</div>
+          <div style="padding:13px;">
+            <div style="font-size:13.5px;font-weight:600;">{{ c.name }}</div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--ink-2);margin:2px 0;">{{ c.hex }}</div>
+            <div style="font-size:12px;color:var(--ink-3);line-height:1.4;">{{ c.role }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- clair vs sombre -->
+    <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:12px;">La palette tient en clair comme en sombre</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><span style="font-family:var(--serif);font-size:22px;letter-spacing:.22em;padding-left:.22em;">VELORA</span><span style="font-size:12px;color:var(--ink-3);">Thème clair</span></div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;"><span style="font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;">25 000</span><span style="font-size:13px;color:var(--ink-3);">FCFA</span></div>
+        <button style="width:100%;background:var(--ink);color:var(--paper);border:none;border-radius:var(--r-md);padding:13px;font-family:var(--sans);font-size:14px;font-weight:600;">Commander — je paie à la livraison</button>
+      </div>
+      <div style="background:#1E1A12;border:1px solid #312A1E;border-radius:var(--r-lg);padding:26px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><span style="font-family:var(--serif);font-size:22px;letter-spacing:.22em;padding-left:.22em;color:#F3EEE2;">VELORA</span><span style="font-size:12px;color:#8f8874;">Thème sombre</span></div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;"><span style="font-size:26px;font-weight:600;color:#F3EEE2;font-variant-numeric:tabular-nums;">25 000</span><span style="font-size:13px;color:#8f8874;">FCFA</span></div>
+        <button style="width:100%;background:#CBA24E;color:#141109;border:none;border-radius:var(--r-md);padding:13px;font-family:var(--sans);font-size:14px;font-weight:600;">Commander — je paie à la livraison</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 04 TYPO ---------- -->
+  <section id="typo" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:30px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">04</span><h2 style="font-size:30px;">Typographie</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;">
+        <div style="font-family:var(--serif);font-size:60px;line-height:1;font-weight:400;">Spectral</div>
+        <div style="font-family:var(--serif);font-size:19px;color:var(--ink-2);margin-top:10px;">Aa Éè Êà Ùç Œ &nbsp; 0123456789</div>
+        <div style="font-size:13px;color:var(--ink-3);margin-top:16px;line-height:1.6;">Titres &amp; logotype. Sérif contemporain, dessiné pour l'écran. Poids 300 / 400 / 500 / 600. Google Fonts, auto-hébergeable, latin étendu complet.</div>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;">
+        <div style="font-family:var(--sans);font-size:60px;line-height:1;font-weight:600;">IBM Plex Sans</div>
+        <div style="font-family:var(--sans);font-size:19px;color:var(--ink-2);margin-top:10px;font-variant-numeric:tabular-nums;">Aa Éè Êà Ùç Œ &nbsp; 0123456789</div>
+        <div style="font-size:13px;color:var(--ink-3);margin-top:16px;line-height:1.6;">Interface, corps &amp; <b>prix</b>. Chiffres tabulaires natifs (tnum), lisible à petite taille sur mobile bas de gamme. Poids 400 / 500 / 600 / 700.</div>
+      </div>
+    </div>
+    <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;">
+      <div style="display:grid;grid-template-columns:130px 90px 90px 1fr;gap:0;padding:12px 24px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);">
+        <span>Rôle</span><span>Taille</span><span>Ligne</span><span>Exemple</span>
+      </div>
+      <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:130px 90px 90px 1fr;gap:0;align-items:baseline;padding:14px 24px;border-bottom:1px solid var(--line);">
+          <span style="font-size:13px;color:var(--ink-2);">{{ t.role }}</span>
+          <span style="font-family:var(--mono);font-size:12px;color:var(--ink-3);">{{ t.size }}</span>
+          <span style="font-family:var(--mono);font-size:12px;color:var(--ink-3);">{{ t.lh }}</span>
+          <span style="font-family:{{ t.ff }};font-size:{{ t.px }};font-weight:{{ t.w }};color:var(--ink);line-height:1.1;">{{ t.sample }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ---------- 05 PRIX ---------- -->
+  <section id="prix" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">05</span><h2 style="font-size:30px;">Traitement des prix</h2></div>
+    <p style="max-width:62ch;margin:0 0 28px;font-size:15px;line-height:1.6;color:var(--ink-2);">Le FCFA n'a pas de sous-unité : les prix sont de longs blocs de chiffres. Chiffres <b>tabulaires</b>, séparateur de milliers par espace fine, devise en petit capital muté après le nombre. Un prix à 25&nbsp;000&nbsp;FCFA doit être aussi élégant qu'un 249&nbsp;€.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:16px;">Prix standard</div>
+        <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:38px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">25 000</span><span style="font-size:15px;color:var(--ink-3);letter-spacing:.04em;">FCFA</span></div>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:16px;">Promotion</div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:38px;font-weight:600;color:var(--danger);font-variant-numeric:tabular-nums;letter-spacing:-.01em;">25 000</span><span style="font-size:15px;color:var(--ink-3);">FCFA</span></div>
+          <span style="background:var(--danger);color:#fff;font-size:13px;font-weight:700;border-radius:var(--r-sm);padding:3px 8px;font-variant-numeric:tabular-nums;">−29 %</span>
+        </div>
+        <div style="margin-top:6px;font-size:16px;color:var(--ink-3);text-decoration:line-through;font-variant-numeric:tabular-nums;">35 000 FCFA</div>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:16px;">Grand nombre · pack</div>
+        <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:38px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">129 000</span><span style="font-size:15px;color:var(--ink-3);">FCFA</span></div>
+        <div style="margin-top:6px;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;">soit 43 000 FCFA / montre · Pack&nbsp;3</div>
+      </div>
+      <div style="background:var(--onyx);border-radius:var(--r-lg);padding:26px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a9484;margin-bottom:16px;">Sur fond onyx</div>
+        <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:38px;font-weight:600;color:#F3EEE2;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">25 000</span><span style="font-size:15px;color:var(--gold);">FCFA</span></div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:var(--gold-tint);border:1px solid var(--line-strong);border-radius:var(--r-lg);padding:18px 22px;font-size:13.5px;line-height:1.6;color:var(--ink-2);">
+      <b>Règle de format :</b> <span style="font-family:var(--mono);">groupes de 3 chiffres · espace fine (U+202F) · pas de décimale · devise en suffixe · <code>font-variant-numeric: tabular-nums</code></span> sur tout prix, quantité et compteur du dashboard pour un alignement vertical parfait.
+    </div>
+  </section>
+
+  <!-- ---------- 06 PHOTO ---------- -->
+  <section id="photo" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">06</span><h2 style="font-size:30px;">Direction photo</h2></div>
+    <p style="max-width:62ch;margin:0 0 28px;font-size:15px;line-height:1.6;color:var(--ink-2);">Réalisable à Cotonou, budget modeste — pas de studio parisien. La marque tient sans image ; la photo est un bonus. L'ancrage africain se sent dans les visages et les lieux, jamais dans une décoration appliquée.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;">
+      <sc-for list="{{ photoSlots }}" as="p" hint-placeholder-count="3">
+        <div style="position:relative;border-radius:var(--r-lg);aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line);background:var(--paper);">
+          <img src="{{ p.img }}" alt="{{ p.label }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:13px 15px;background:linear-gradient(to top,rgba(20,17,9,.85),rgba(20,17,9,.35) 55%,transparent);">
+            <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;">{{ p.label }}</div>
+            <div style="font-size:11.5px;color:#EFE9DC;line-height:1.45;margin-top:3px;">{{ p.note }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--serif);font-size:18px;margin-bottom:14px;color:var(--success);">À faire</div>
+        <sc-for list="{{ photoDo }}" as="d" hint-placeholder-count="5">
+          <div style="display:flex;gap:10px;padding:7px 0;font-size:14px;line-height:1.5;color:var(--ink-2);"><span style="color:var(--success);">✓</span><span>{{ d }}</span></div>
+        </sc-for>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--serif);font-size:18px;margin-bottom:14px;color:var(--danger);">À éviter</div>
+        <sc-for list="{{ photoDont }}" as="d" hint-placeholder-count="5">
+          <div style="display:flex;gap:10px;padding:7px 0;font-size:14px;line-height:1.5;color:var(--ink-3);"><span style="color:var(--danger);">✕</span><span>{{ d }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 07 COMPOSANTS ---------- -->
+  <section id="composants" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:30px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">07</span><h2 style="font-size:30px;">Composants clés</h2></div>
+
+    <!-- carte produit + états -->
+    <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:14px;">Carte produit · grille mobile · états</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:34px;">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
+        <div style="border:1px solid {{ c.border }};border-radius:var(--r-lg);overflow:hidden;background:var(--paper-2);box-shadow:{{ c.shadow }};opacity:{{ c.opacity }};position:relative;">
+          <div style="aspect-ratio:1;background:var(--ivory);position:relative;overflow:hidden;">
+            <img src="{{ c.img }}" alt="{{ c.name }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;top:10px;right:10px;background:{{ c.badgeBg }};color:{{ c.badgeColor }};font-size:11px;font-weight:700;border-radius:var(--r-sm);padding:3px 7px;">{{ c.badge }}</span></sc-if>
+          </div>
+          <div style="padding:13px;">
+            <div style="font-size:13.5px;line-height:1.35;color:var(--ink);margin-bottom:7px;min-height:36px;">{{ c.name }}</div>
+            <div style="display:flex;align-items:baseline;gap:6px;"><span style="font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;color:{{ c.priceColor }};">{{ c.price }}</span><span style="font-size:11px;color:var(--ink-3);">FCFA</span></div>
+            <div style="margin-top:11px;font-size:12px;font-weight:600;color:{{ c.ctaColor }};text-align:center;border:1px solid {{ c.ctaBorder }};border-radius:var(--r-sm);padding:8px;background:{{ c.ctaBg }};">{{ c.cta }}</div>
+          </div>
+          <span style="position:absolute;top:0;left:0;font-family:var(--mono);font-size:9px;background:var(--ink);color:var(--paper);padding:2px 6px;border-bottom-right-radius:var(--r-sm);">{{ c.state }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px;">
+      <!-- sélecteur variantes -->
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:18px;">Sélecteur de variantes</div>
+        <div style="font-size:13px;color:var(--ink-2);margin-bottom:9px;">Couleur</div>
+        <div style="display:flex;gap:10px;margin-bottom:20px;">
+          <span style="width:34px;height:34px;border-radius:50%;background:#1b1813;outline:2px solid var(--gold);outline-offset:2px;"></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#c8a24a;border:1px solid var(--line-strong);"></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#c9cbcd;border:1px solid var(--line-strong);"></span>
+          <span style="width:34px;height:34px;border-radius:50%;background:#8a6a4b;border:1px solid var(--line-strong);position:relative;opacity:.4;"><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;">✕</span></span>
+        </div>
+        <div style="font-size:13px;color:var(--ink-2);margin-bottom:9px;">Taille du boîtier</div>
+        <div style="display:flex;gap:8px;margin-bottom:20px;">
+          <span style="padding:9px 15px;border:1px solid var(--gold);background:var(--gold-tint);border-radius:var(--r-md);font-size:13px;font-weight:600;">40 mm</span>
+          <span style="padding:9px 15px;border:1px solid var(--line-strong);border-radius:var(--r-md);font-size:13px;color:var(--ink-2);">42 mm</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:var(--r-md);font-size:13px;color:var(--ink-3);text-decoration:line-through;">44 mm</span>
+        </div>
+        <div style="font-size:13px;color:var(--ink-2);margin-bottom:9px;">Pack</div>
+        <div style="display:flex;gap:8px;">
+          <span style="padding:9px 14px;border:1px solid var(--line-strong);border-radius:var(--r-md);font-size:13px;color:var(--ink-2);">×1</span>
+          <span style="padding:9px 14px;border:1px solid var(--gold);background:var(--gold-tint);border-radius:var(--r-md);font-size:13px;font-weight:600;">×3 <span style="color:var(--gold-strong);">−15 %</span></span>
+          <span style="padding:9px 14px;border:1px solid var(--line-strong);border-radius:var(--r-md);font-size:13px;color:var(--ink-2);">×5 <span style="color:var(--gold-strong);">−20 %</span></span>
+        </div>
+      </div>
+      <!-- bandeau réassurance + états légende -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--onyx);border-radius:var(--r-lg);padding:22px;">
+          <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9a9484;margin-bottom:16px;">Bandeau de réassurance livraison</div>
+          <sc-for list="{{ reassure }}" as="r" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #2a2418;">
+              <span style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;"></span>
+              <span style="font-size:14px;color:#EFE9DC;">{{ r }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;">
+          <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:14px;">États des composants interactifs</div>
+          <sc-for list="{{ states }}" as="s" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:12px;padding:8px 0;font-size:13.5px;">
+              <span style="font-family:var(--mono);font-size:11px;min-width:78px;color:var(--gold-strong);">{{ s.k }}</span>
+              <span style="color:var(--ink-2);line-height:1.4;">{{ s.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- prix block + formulaire COD -->
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:16px;">
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:18px;">Bloc de prix · promotion</div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:34px;font-weight:600;color:var(--danger);font-variant-numeric:tabular-nums;">25 000</span><span style="font-size:14px;color:var(--ink-3);">FCFA</span></div>
+          <span style="background:var(--danger);color:#fff;font-size:12px;font-weight:700;border-radius:var(--r-sm);padding:3px 8px;">−29 %</span>
+        </div>
+        <div style="font-size:15px;color:var(--ink-3);text-decoration:line-through;font-variant-numeric:tabular-nums;">35 000 FCFA</div>
+        <div style="margin-top:14px;font-size:13px;color:var(--success);font-weight:600;">Vous économisez 10 000 FCFA</div>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;">
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:18px;">Formulaire de commande COD</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div><div style="font-size:12px;color:var(--ink-2);margin-bottom:5px;">Nom complet</div><div style="border:1px solid var(--line-strong);border-radius:var(--r-md);padding:11px 13px;font-size:14px;color:var(--ink);background:var(--paper-2);">Kofi Mensah</div></div>
+          <div><div style="font-size:12px;color:var(--ink-2);margin-bottom:5px;">Téléphone (on vous appelle pour confirmer)</div><div style="border:1px solid var(--gold);border-radius:var(--r-md);padding:11px 13px;font-size:14px;color:var(--ink);background:var(--paper-2);font-variant-numeric:tabular-nums;">+229 01 97 00 00 00<span style="float:right;color:var(--gold-strong);font-size:12px;">saisie…</span></div></div>
+          <div><div style="font-size:12px;color:var(--ink-2);margin-bottom:5px;">Adresse de livraison</div><div style="border:1px solid var(--line-strong);border-radius:var(--r-md);padding:11px 13px;font-size:14px;color:var(--ink-3);background:var(--paper-2);">Quartier, repère, ville…</div></div>
+          <button style="margin-top:4px;background:var(--ink);color:var(--paper);border:none;border-radius:var(--r-md);padding:15px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;">Commander — je paie à la livraison</button>
+          <div style="text-align:center;font-size:12.5px;color:var(--ink-3);line-height:1.5;">Aucun paiement en ligne. Vous réglez 25&nbsp;000&nbsp;FCFA en espèces au livreur.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 08 MICRO-COPIE ---------- -->
+  <section id="copie" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">08</span><h2 style="font-size:30px;">Micro-copie de commande</h2></div>
+    <p style="max-width:62ch;margin:0 0 28px;font-size:15px;line-height:1.6;color:var(--ink-2);">On ne dit ni « Acheter maintenant » ni « Payer » — le client ne paie pas maintenant. Le vocabulaire lève le doute sur le moment du paiement et humanise le livreur.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;">
+      <sc-for list="{{ copy }}" as="c" hint-placeholder-count="4">
+        <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;">
+          <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-strong);margin-bottom:14px;">{{ c.ctx }}</div>
+          <div style="font-family:var(--serif);font-size:19px;line-height:1.35;color:var(--ink);margin-bottom:12px;">« {{ c.yes }} »</div>
+          <div style="font-size:13px;color:var(--ink-3);text-decoration:line-through;">{{ c.no }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ---------- 09 DASHBOARD ---------- -->
+  <section id="dashboard" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">09</span><h2 style="font-size:30px;">Second registre · dashboard interne</h2></div>
+    <p style="max-width:62ch;margin:0 0 24px;font-size:15px;line-height:1.6;color:var(--ink-2);">Même marque, mission inverse : densité et lisibilité, pas séduction. L'or s'efface, réduit à l'identité de la barre latérale et à l'état actif. Sérif réservé au wordmark ; tout le reste en Plex Sans compact, chiffres tabulaires.</p>
+    <div style="border:1px solid var(--line-strong);border-radius:var(--r-lg);overflow-x:auto;box-shadow:var(--sh-md);">
+    <div style="display:grid;grid-template-columns:190px 1fr;background:#fff;min-height:440px;min-width:820px;">
+      <!-- sidebar -->
+      <div style="background:var(--onyx);padding:18px 14px;">
+        <div style="font-family:var(--serif);font-size:16px;letter-spacing:.22em;padding-left:.22em;color:#F5F1E8;margin-bottom:22px;">VELORA</div>
+        <sc-for list="{{ dashNav }}" as="d" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:var(--r-sm);margin-bottom:2px;font-size:12.5px;color:{{ d.color }};background:{{ d.bg }};">
+            <span>{{ d.label }}</span>
+            <sc-if value="{{ d.count }}" hint-placeholder-val="{{ true }}"><span style="font-family:var(--mono);font-size:11px;background:{{ d.countBg }};color:{{ d.countColor }};border-radius:var(--r-pill);padding:1px 7px;">{{ d.count }}</span></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <!-- main -->
+      <div style="padding:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);">
+          <div style="font-size:15px;font-weight:600;">File de commandes · Bénin</div>
+          <div style="display:flex;gap:8px;">
+            <span style="font-size:12px;color:var(--ink-2);border:1px solid var(--line-strong);border-radius:var(--r-sm);padding:5px 11px;">Tous les marchés ▾</span>
+            <span style="font-size:12px;color:var(--ink-2);border:1px solid var(--line-strong);border-radius:var(--r-sm);padding:5px 11px;">Score ▾</span>
+          </div>
+        </div>
+        <!-- table header -->
+        <div style="display:grid;grid-template-columns:64px 1.4fr 1fr 90px 96px 90px;gap:0;padding:9px 20px;background:var(--ivory);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);">
+          <span>Score</span><span>Client</span><span>Produit</span><span style="text-align:right;">Montant</span><span>Statut</span><span>Signal</span>
+        </div>
+        <sc-for list="{{ orders }}" as="o" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:64px 1.4fr 1fr 90px 96px 90px;gap:0;align-items:center;padding:11px 20px;border-bottom:1px solid var(--line);font-size:12.5px;">
+            <span><span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:22px;border-radius:var(--r-sm);font-family:var(--mono);font-size:12px;font-weight:700;color:{{ o.scoreColor }};background:{{ o.scoreBg }};font-variant-numeric:tabular-nums;">{{ o.score }}</span></span>
+            <span style="color:var(--ink);">{{ o.client }}<span style="display:block;font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap;">{{ o.phone }}</span></span>
+            <span style="color:var(--ink-2);">{{ o.product }}</span>
+            <span style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500;">{{ o.amount }}</span>
+            <span><span style="font-size:11px;font-weight:600;color:{{ o.statusColor }};background:{{ o.statusBg }};border-radius:var(--r-sm);padding:2px 7px;">{{ o.status }}</span></span>
+            <span style="font-size:11px;color:{{ o.signalColor }};">{{ o.signal }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);">
+      <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--success);"></span>Score &lt; 30 · accepté auto</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--warning);"></span>30–70 · vérif. manuelle</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--danger);"></span>&gt; 70 · blocage / honeypot</span>
+    </div>
+  </section>
+
+  <!-- ---------- 10 CRITÈRES ---------- -->
+  <section id="criteres" style="padding:64px 56px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:26px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">10</span><h2 style="font-size:30px;">Critères de réussite</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
+      <sc-for list="{{ criteria }}" as="c" hint-placeholder-count="5">
+        <div style="background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r-md);padding:20px;font-size:14.5px;line-height:1.55;color:var(--ink-2);">{{ c }}</div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ---------- 11 TOKENS ---------- -->
+  <section id="tokens" style="padding:64px 56px;">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;"><span style="font-family:var(--mono);color:var(--gold-strong);font-size:13px;">11</span><h2 style="font-size:30px;">Jetons de design · variables CSS</h2></div>
+    <p style="max-width:62ch;margin:0 0 24px;font-size:15px;line-height:1.6;color:var(--ink-2);">Copiables tels quels. En thème sombre, seules les variables de couleur sont réassignées — la structure ne bouge pas.</p>
+    <div style="background:var(--onyx);border-radius:var(--r-lg);padding:26px 28px;overflow-x:auto;">
+      <pre style="margin:0;font-family:var(--mono);font-size:12.5px;line-height:1.85;color:#D9D2C2;white-space:pre;">{{ tokenCss }}</pre>
+    </div>
+    <div style="margin-top:40px;text-align:center;">
+      <div style="font-family:var(--serif);font-size:26px;letter-spacing:.28em;padding-left:.28em;color:var(--ink);">VELORA</div>
+      <div style="font-size:12px;color:var(--ink-3);margin-top:10px;">Guide d'identité visuelle · v1.0 · © 2025 Velora Commerce</div>
+    </div>
+  </section>
+
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    const tokenCss = `:root {
+  /* ——— NEUTRES · thème clair (dominant) ——— */
+  --ivory:        #F5F1E8;   /* fond de page */
+  --paper:        #FCFAF4;   /* surface / carte */
+  --paper-2:      #FFFFFF;   /* champ, surface haute */
+  --ink:          #1B1813;   /* texte primaire   · 14.9:1 sur ivory · AAA */
+  --ink-2:        #4A4438;   /* texte secondaire ·  8.1:1 sur ivory · AAA */
+  --ink-3:        #867E6D;   /* muté / placeholder · 3.6:1 · grand texte */
+  --line:         #E6DFD0;   /* bordure discrète */
+  --line-strong:  #D4CAB4;   /* bordure appuyée */
+  --onyx:         #141109;   /* fond sombre / logo contexte */
+
+  /* ——— ACCENT MARQUE · champagne ——— */
+  --gold:         #B7923F;   /* décor, filets, monogramme */
+  --gold-strong:  #8A6B28;   /* texte/lien accent · 4.8:1 sur ivory · AA */
+  --gold-tint:    #EFE7D2;   /* surface accent douce */
+
+  /* ——— SÉMANTIQUE · dashboard (ne jure pas avec l'or) ——— */
+  --success:      #3E8E5A;   --success-tint: #E4EFE7;   /* accepté / livré */
+  --warning:      #C7811A;   --warning-tint: #F6ECD6;   /* vérif. manuelle */
+  --danger:       #BC3B32;   --danger-tint:  #F5E1DE;   /* blocage / promo */
+  --info:         #3F6E9C;   --info-tint:    #E3EAF1;   /* neutre info */
+
+  /* ——— TYPOGRAPHIE ——— */
+  --serif: 'Spectral', Georgia, serif;         /* logotype + titres */
+  --sans:  'IBM Plex Sans', system-ui, sans-serif; /* UI, corps, PRIX (tnum) */
+  --mono:  ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* échelle · rem base 16px */
+  --t-display:3.5rem; --t-h1:2rem;  --t-h2:1.5rem; --t-h3:1.25rem;
+  --t-body-l:1.125rem; --t-body:1rem; --t-body-s:0.875rem; --t-caption:0.8125rem;
+
+  /* ——— ESPACEMENTS · échelle 4px ——— */
+  --s-1:4px;  --s-2:8px;  --s-3:12px; --s-4:16px;
+  --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+
+  /* ——— RAYONS ——— */
+  --r-sm:4px; --r-md:8px; --r-lg:14px; --r-pill:999px;
+
+  /* ——— OMBRES · teintées chaud ——— */
+  --sh-sm:0 1px 2px      rgba(27,24,19,.06);
+  --sh-md:0 6px 20px -6px rgba(27,24,19,.16);
+  --sh-lg:0 18px 48px -12px rgba(27,24,19,.24);
+}
+
+/* ——— THÈME SOMBRE · réassigne les couleurs seulement ——— */
+[data-theme="onyx"] {
+  --ivory:#141109; --paper:#1E1A12; --paper-2:#252017;
+  --ink:#F3EEE2; --ink-2:#C9C1AF; --ink-3:#8F8874;
+  --line:#312A1E; --line-strong:#463D2C; --onyx:#0E0C08;
+  --gold:#CBA24E; --gold-strong:#E3C275; --gold-tint:#2A2314;
+}`;
+
+    return {
+      tokenCss,
+      nav: [
+        {num:'01',label:'Plateforme de marque',href:'#plateforme'},
+        {num:'02',label:'Logo',href:'#logo'},
+        {num:'03',label:'Palette',href:'#palette'},
+        {num:'04',label:'Typographie',href:'#typo'},
+        {num:'05',label:'Prix',href:'#prix'},
+        {num:'06',label:'Direction photo',href:'#photo'},
+        {num:'07',label:'Composants',href:'#composants'},
+        {num:'08',label:'Micro-copie',href:'#copie'},
+        {num:'09',label:'Dashboard interne',href:'#dashboard'},
+        {num:'10',label:'Critères de réussite',href:'#criteres'},
+        {num:'11',label:'Jetons de design',href:'#tokens'},
+      ],
+      heroTags: ['Cotonou · Parakou','Côte d\u2019Ivoire','Gabon','Paiement à la livraison'],
+      platform: [
+        {k:'Positionnement',v:'La mode masculine premium, en ligne, payée à la porte. Le confort d\u2019une marque mondiale, la proximité d\u2019un livreur qui sonne demain.'},
+        {k:'Personnalité',v:'Sobre, sûre d\u2019elle, contemporaine. Elle montre plutôt qu\u2019elle ne rassure. Le luxe est dans la retenue.'},
+        {k:'Client',v:'Homme urbain 25–45 ans, connecté, achète au téléphone. Il connaît les codes du premium international et les attend ici.'},
+      ],
+      logoSizes: [
+        {ctx:'Logotype — écran',size:'≥ 120 px de large'},
+        {ctx:'Logotype — impression',size:'≥ 22 mm de large'},
+        {ctx:'Monogramme V',size:'≥ 16 px'},
+      ],
+      swAccent: [
+        {bg:'#B7923F',name:'Champagne',hex:'#B7923F',role:'Accent de marque : filets, monogramme, état actif.',wcag:'AA sur onyx · décor sur ivory'},
+        {bg:'#8A6B28',name:'Champagne fort',hex:'#8A6B28',role:'Texte et liens accentués sur fond clair.',wcag:'AA · 4.8:1 sur ivory'},
+        {bg:'#EFE7D2',name:'Champagne tint',hex:'#EFE7D2',role:'Surface d\u2019accent, sélection, badge doux.',wcag:'Fond · texte ink dessus'},
+      ],
+      swNeutral: [
+        {bg:'#F5F1E8',name:'Ivory',hex:'#F5F1E8'},
+        {bg:'#FCFAF4',name:'Paper',hex:'#FCFAF4'},
+        {bg:'#FFFFFF',name:'Paper 2',hex:'#FFFFFF'},
+        {bg:'#867E6D',name:'Ink 3',hex:'#867E6D'},
+        {bg:'#4A4438',name:'Ink 2',hex:'#4A4438'},
+        {bg:'#1B1813',name:'Ink',hex:'#1B1813'},
+        {bg:'#141109',name:'Onyx',hex:'#141109'},
+      ],
+      swSemantic: [
+        {bg:'#3E8E5A',tag:'Accepté',name:'Success',hex:'#3E8E5A',role:'Commande acceptée, livrée.'},
+        {bg:'#C7811A',tag:'Vérifier',name:'Warning',hex:'#C7811A',role:'File de vérification manuelle.'},
+        {bg:'#BC3B32',tag:'Bloqué',name:'Danger',hex:'#BC3B32',role:'Blocage, promo, prix barré.'},
+        {bg:'#3F6E9C',tag:'Info',name:'Info',hex:'#3F6E9C',role:'Neutre, événement tracking.'},
+      ],
+      typeScale: [
+        {role:'Display',size:'56 / 3.5rem',lh:'0.98',ff:'var(--serif)',px:'40px',w:'400',sample:'Velora'},
+        {role:'H1',size:'32 / 2rem',lh:'1.1',ff:'var(--serif)',px:'28px',w:'500',sample:'Montres & maroquinerie'},
+        {role:'H2',size:'24 / 1.5rem',lh:'1.2',ff:'var(--serif)',px:'22px',w:'500',sample:'Nouvelle collection'},
+        {role:'H3',size:'20 / 1.25rem',lh:'1.3',ff:'var(--serif)',px:'18px',w:'500',sample:'Détails du produit'},
+        {role:'Body L',size:'18 / 1.125rem',lh:'1.6',ff:'var(--sans)',px:'17px',w:'400',sample:'Livré chez vous en 24–48 h.'},
+        {role:'Body',size:'16 / 1rem',lh:'1.55',ff:'var(--sans)',px:'15px',w:'400',sample:'Vous payez le livreur en espèces.'},
+        {role:'Body S',size:'14 / 0.875rem',lh:'1.5',ff:'var(--sans)',px:'14px',w:'400',sample:'Quartier, repère, ville'},
+        {role:'Prix',size:'tabulaire',lh:'1.0',ff:'var(--sans)',px:'22px',w:'600',sample:'25 000 FCFA'},
+      ],
+      photoSlots: [
+        {label:'packshot produit',note:'Fond neutre continu, lumière douce, ombre portée courte. Réalisable sur mur peint + une fenêtre.',img:'assets/photo-packshot.png'},
+        {label:'porté / lifestyle',note:'Homme réel, en ville, cadrage serré. Le visage et le lieu ancrent — pas le décor.',img:'assets/photo-lifestyle.png'},
+        {label:'détail matière',note:'Macro cuir, cadran, couture. Texture premium, aucune post-prod lourde.',img:'assets/photo-detail.png'},
+      ],
+      photoDo: [
+        'Lumière naturelle + un réflecteur blanc',
+        'Fond uni neutre (mur, papier kraft, béton clair)',
+        'Visages et lieux locaux, réels, dignes',
+        'Cadrage serré, produit net, arrière-plan calme',
+        'Colorimétrie sobre, contraste maîtrisé',
+      ],
+      photoDont: [
+        'Coucher de soleil orange, silhouette d\u2019acacia',
+        'Motifs « tribaux », wax, terre cuite en déco',
+        'Mannequin en stock photo générique',
+        'Filtres saturés, HDR agressif',
+        'Fonds chargés qui volent la vedette au produit',
+      ],
+      cards: (() => {
+        const base = {shadow:'var(--sh-sm)',opacity:'1',badge:'',badgeBg:'var(--danger)',badgeColor:'#fff',priceColor:'var(--ink)',border:'var(--line)',cta:'Ajouter',ctaColor:'var(--paper)',ctaBg:'var(--ink)',ctaBorder:'var(--ink)'};
+        return [
+          {...base,state:'défaut',name:'Montre chronographe acier',price:'25 000',img:'assets/prod-chrono.png'},
+          {...base,state:'survol',shadow:'var(--sh-md)',border:'var(--line-strong)',name:'Portefeuille cuir grainé',price:'18 000',cta:'Ajouter',img:'assets/prod-wallet.png'},
+          {...base,state:'promo',border:'var(--line)',badge:'−29 %',name:'Montre automatique or rose',price:'25 000',priceColor:'var(--danger)',img:'assets/prod-watch-gold.png'},
+          {...base,state:'rupture',opacity:'.55',name:'Ceinture réversible cuir',price:'15 000',cta:'Rupture de stock',ctaColor:'var(--ink-3)',ctaBg:'transparent',ctaBorder:'var(--line-strong)',img:'assets/prod-belt.png'},
+        ];
+      })(),
+      reassure: ['Livré chez vous en 24–48 h','Vous inspectez avant de payer','Paiement en espèces au livreur'],
+      states: [
+        {k:'défaut',v:'Bordure --line, fond --paper, texte --ink.'},
+        {k:'survol',v:'Bordure --line-strong, ombre --sh-md.'},
+        {k:'actif',v:'Bordure --gold, fond --gold-tint.'},
+        {k:'désactivé',v:'Opacité .55, curseur interdit, pas d\u2019ombre.'},
+        {k:'rupture',v:'Grisé, CTA « Rupture de stock », non cliquable.'},
+      ],
+      copy: [
+        {ctx:'Bouton principal',yes:'Commander — je paie à la livraison',no:'Acheter maintenant'},
+        {ctx:'Confirmation',yes:'Commande enregistrée. On vous appelle pour confirmer.',no:'Paiement réussi'},
+        {ctx:'Promesse de livraison',yes:'Livré chez vous en 24–48 h. Vous payez le livreur.',no:'Paiement sécurisé garanti'},
+        {ctx:'Réassurance',yes:'Vous voyez l\u2019article avant de régler.',no:'100 % satisfait ou remboursé'},
+      ],
+      dashNav: (() => {
+        const d=(label,extra={})=>({label,color:'#B6AE9C',bg:'transparent',count:'',countBg:'#2a2418',countColor:'#B6AE9C',...extra});
+        return [
+          d('File de commandes',{color:'#F5F1E8',bg:'rgba(183,146,63,.16)',count:'42',countBg:'var(--gold)',countColor:'#141109'}),
+          d('Vérif. manuelle',{count:'7',countBg:'#5a4a12',countColor:'#E8C766'}),
+          d('Blacklist'),
+          d('Config marchés'),
+          d('Analytics COD'),
+          d('Sessions suspectes',{count:'3',countBg:'#5a2420',countColor:'#E7A79f'}),
+        ];
+      })(),
+      orders: [
+        {score:'8', scoreColor:'#fff',scoreBg:'var(--success)',client:'Kofi Mensah',phone:'+229 01 97 00 00 00',product:'Chrono acier ×1',amount:'25 000',status:'Accepté',statusColor:'var(--success)',statusBg:'var(--success-tint)',signal:'—',signalColor:'var(--ink-3)'},
+        {score:'12',scoreColor:'#fff',scoreBg:'var(--success)',client:'Awa Diallo',phone:'+225 07 00 00 00 00',product:'Portefeuille cuir',amount:'18 000',status:'Accepté',statusColor:'var(--success)',statusBg:'var(--success-tint)',signal:'—',signalColor:'var(--ink-3)'},
+        {score:'54',scoreColor:'#8a5a10',scoreBg:'var(--warning-tint)',client:'Jean Koffi',phone:'+229 01 40 00 00 00',product:'Montre or ×3',amount:'129 000',status:'À vérifier',statusColor:'#8a5a10',statusBg:'var(--warning-tint)',signal:'Montant élevé',signalColor:'var(--warning)'},
+        {score:'61',scoreColor:'#8a5a10',scoreBg:'var(--warning-tint)',client:'Marc A.',phone:'+241 06 00 00 00 00',product:'Ceinture ×1',amount:'15 000',status:'À vérifier',statusColor:'#8a5a10',statusBg:'var(--warning-tint)',signal:'VPN détecté',signalColor:'var(--warning)'},
+        {score:'88',scoreColor:'#fff',scoreBg:'var(--danger)',client:'— masqué —',phone:'+229 90 00 00 00',product:'Montre or ×5',amount:'215 000',status:'Bloqué',statusColor:'var(--danger)',statusBg:'var(--danger-tint)',signal:'Numéro VoIP',signalColor:'var(--danger)'},
+        {score:'93',scoreColor:'#fff',scoreBg:'var(--danger)',client:'— masqué —',phone:'+229 90 11 11 11',product:'Pack mixte',amount:'180 000',status:'Honeypot',statusColor:'var(--danger)',statusBg:'var(--danger-tint)',signal:'Antidetect',signalColor:'var(--danger)'},
+      ],
+      criteria: [
+        'Reconnaissable dans une vignette de 32 px et dans un fil TikTok.',
+        'La page produit reste identifiable Velora, images non chargées.',
+        'Un développeur implémente sans question : couleurs, espacements, états définis.',
+        'Un prix à 25 000 FCFA est aussi élégant qu\u2019un 249 €.',
+        'Rien à refaire pour ouvrir un quatrième pays.',
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

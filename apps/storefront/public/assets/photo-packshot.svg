@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Packshot produit">
+  <rect width="800" height="800" fill="#D4CAB4"/>
+  <circle cx="400" cy="352" r="132" fill="none" stroke="#1B1813" stroke-width="2" opacity=".5"/>
+  <text x="400" y="372" text-anchor="middle" fill="#1B1813" font-family="Georgia,serif" font-size="72" letter-spacing="10">V</text>
+  <text x="400" y="556" text-anchor="middle" fill="#1B1813" font-family="system-ui,sans-serif" font-size="22" opacity=".75">Packshot produit</text>
+  <text x="400" y="590" text-anchor="middle" fill="#1B1813" font-family="ui-monospace,monospace" font-size="15" opacity=".5">PLACEHOLDER</text>
+</svg>

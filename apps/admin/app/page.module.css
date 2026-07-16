@@ -1,0 +1,133 @@
+.main {
+  padding: var(--s-5);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Seul endroit où le serif subsiste dans l'outil interne. */
+.wordmark {
+  font-family: var(--serif);
+  font-size: 15px;
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  color: var(--ink);
+}
+
+.section {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
+
+.shadowBadge {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--warning);
+  background: var(--warning-tint);
+  border-radius: var(--r-sm);
+  padding: 3px var(--s-2);
+}
+
+.notice {
+  font-size: var(--t-caption);
+  color: var(--ink-2);
+  background: var(--gold-tint);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  padding: var(--s-3);
+  margin: var(--s-4) 0;
+}
+
+/* Les tableaux larges défilent dans leur propre conteneur —
+   la page, elle, ne défile jamais horizontalement. */
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-body-s);
+}
+
+.table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: var(--t-caption);
+  color: var(--ink-3);
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--ivory);
+}
+
+.thNum,
+.tdNum {
+  text-align: right;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: var(--t-caption);
+}
+
+.muted {
+  color: var(--ink-3);
+  font-size: var(--t-caption);
+}
+
+.score {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+  font-weight: 700;
+  font-size: var(--t-caption);
+  color: #fff;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px var(--s-2);
+  border-radius: var(--r-sm);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Le score utilise la couleur pleine, le badge sa teinte —
+   même sémantique, deux densités. */
+.success { background: var(--success); }
+.warning { background: var(--warning); }
+.danger { background: var(--danger); }
+
+.badge.success { background: var(--success-tint); color: var(--success); }
+.badge.warning { background: var(--warning-tint); color: var(--warning); }
+.badge.danger { background: var(--danger-tint); color: var(--danger); }

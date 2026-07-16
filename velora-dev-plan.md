@@ -52,7 +52,7 @@ Stack choisie pour minimiser la complexité opérationnelle, maximiser la perfor
 | Couche | Technologie | Justification |
 |---|---|---|
 | Storefront | Next.js 15 App Router | Routes `/bj` `/ci` `/ga` natives, SSR pour SEO, React Server Components, optimisé Edge |
-| Backend API | Node.js + Fastify | Faible overhead, excellent support WebSocket pour dashboard temps réel, écosystème npm |
+| Backend API | Node.js + Express 5 | Écosystème de middlewares le plus large de Node, stack universellement connue (recrutement freelance facile), gestion native des erreurs async depuis la v5 |
 | Base de données | PostgreSQL via Supabase | Gratuit pour démarrer, Row Level Security natif, auth intégrée, scale horizontal |
 | Cache / Bans | Upstash Redis | Serverless, compatible Edge/Middleware Next.js, vérifications ban < 1ms par requête |
 | Dashboard admin | Next.js + Shadcn/ui | Même stack que le storefront, déploiement séparé sur `admin.velora.com` |
@@ -66,6 +66,20 @@ Stack choisie pour minimiser la complexité opérationnelle, maximiser la perfor
 | Event queue | pg-boss ou Inngest | Retry automatique CAPI si échec, ordre garanti, idempotency par `event_id` |
 | Monitoring | Sentry + PostHog | Erreurs temps réel + analytics comportementaux, plans gratuits disponibles |
 
+### Briques complémentaires côté API Express
+
+Express est volontairement minimaliste : plusieurs fonctions fournies nativement par d'autres frameworks doivent être ajoutées explicitement. Ces choix sont structurants et à poser dès la Phase 0.
+
+| Besoin | Brique | Rôle |
+|---|---|---|
+| Temps réel dashboard | `ws` (ou Socket.IO) | Push des nouvelles commandes et changements de statut vers le dashboard — non inclus dans Express |
+| Validation des entrées | `zod` + middleware | Validation stricte de chaque payload (commande, webhook, config marché) — première ligne de défense anti-fraude |
+| En-têtes de sécurité | `helmet` | CSP, HSTS, protections headers par défaut |
+| Rate limiting | `express-rate-limit` + store Redis Upstash | Limite par IP/device, partagé entre instances — base technique du tarpit (§7) |
+| Typage & structure | TypeScript + routers par domaine | `routes/orders`, `routes/tracking`, `routes/fraud`, `routes/markets` |
+
+> **Note CGNAT** : le rate limiting par IP doit être calibré avec prudence — les réseaux mobiles ouest-africains partagent massivement les IP publiques entre abonnés (voir §6).
+
 ---
 
 ## 3. Architecture multi-marchés
@@ -77,9 +91,9 @@ Chaque marché est une configuration en base de données, pas une instance sépa
 | Paramètre | Détail |
 |---|---|
 | **Devise & symbole** | XOF pour Bénin et CI · XAF pour Gabon · extensible |
-| **Meta Pixel** | Pixel ID + Access Token unique par marché |
-| **TikTok Pixel** | Pixel ID + Access Token unique par marché |
-| **Snapchat Pixel** | Pixel ID + Access Token (activable par marché) |
+| **Meta Pixel** | Pixel ID + Access Token — partagés par tous les marchés (configuration globale, pas par marché) |
+| **TikTok Pixel** | Pixel ID + Access Token — partagés par tous les marchés (configuration globale, pas par marché) |
+| **Snapchat Pixel** | Pixel ID + Access Token — partagés par tous les marchés (configuration globale, pas par marché) |
 | **WhatsApp** | Numéro dédié avec préfixe international par marché |
 | **Livreurs** | Liste des transporteurs locaux et leurs APIs |
 | **Délais livraison** | Affichage localisé (ex : 24–48h Cotonou vs 3–5j Parakou) |
@@ -357,7 +371,7 @@ Le développement est organisé en 9 phases progressives. Chaque phase livre de 
 | **Phase 4** — Storefront Bénin | 6 semaines | 🟠 Haute | Site custom `/bj`, catalogue, panier multi-produits, variantes, offres, formulaire COD, SEO |
 | **Phase 5** — Contre-attaques | 3 semaines | 🟠 Haute | Honeypot, tarpit, session recording rrweb, pixel retour, ban audiences Meta/TikTok/Snapchat |
 | **Phase 6** — Anti-fraude v2 | 2 semaines | 🟡 Moyenne | Behavioral matching, fuzzy match adresse/nom, réseau inter-marchands, signalement opérateurs |
-| **Phase 7** — Multi-marchés CI/GA | 4 semaines | 🟡 Moyenne | Storefronts `/ci` et `/ga`, configs marchés, livreurs locaux, pixels séparés, page sélection pays |
+| **Phase 7** — Multi-marchés CI/GA | 4 semaines | 🟡 Moyenne | Storefronts `/ci` et `/ga`, configs marchés, livreurs locaux, page sélection pays |
 | **Phase 8** — Migration Shopify | 2 semaines | 🟢 Basse | Redirection domaine, import catalogue complet, coupure Shopify, tests de régression |
 
 > **Total : 29 semaines (~7 mois)** pour un développeur senior seul, ou ~4 mois avec une équipe de 2
@@ -365,8 +379,9 @@ Le développement est organisé en 9 phases progressives. Chaque phase livre de 
 
 ### Détail Phase 0 — Fondations (Semaines 1–2)
 
-- **Monorepo** : `apps/storefront`, `apps/admin`, `apps/api`, `packages/tracking`, `packages/fraud`
-- **CI/CD** : GitHub Actions, déploiement automatique sur Vercel (front) et Railway (API)
+- **Monorepo** : `apps/storefront` (Next.js), `apps/admin` (Next.js), `apps/api` (Express 5 + TypeScript), `packages/tracking`, `packages/fraud`
+- **Squelette API** : Express 5, routers par domaine, `helmet`, `zod`, `express-rate-limit` sur store Redis, handler d'erreurs centralisé, `/health`
+- **CI/CD** : GitHub Actions, déploiement automatique sur Vercel (front) et Railway (API Docker)
 - **Domaines** : `velora.com`, `admin.velora.com`, `api.velora.com` avec certificats SSL Let's Encrypt
 - **Supabase** : projet créé, schéma initial, Row Level Security, seed données de test
 - **Upstash Redis** : instance créée, connexion testée, variables d'environnement injectées

@@ -1,0 +1,22 @@
+{
+  "name": "velora",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Velora — storefront multi-marchés COD, dashboard admin, API. Monorepo.",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev:api": "pnpm --filter @velora/api dev",
+    "dev:storefront": "pnpm --filter @velora/storefront dev",
+    "dev:admin": "pnpm --filter @velora/admin dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

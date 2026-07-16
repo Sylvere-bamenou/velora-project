@@ -1,0 +1,72 @@
+.main {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  padding: var(--s-6) var(--s-4);
+  text-align: center;
+}
+
+.wordmark {
+  font-family: var(--serif);
+  font-size: 32px;
+  letter-spacing: 0.28em;
+  padding-left: 0.28em;
+  color: var(--ink);
+}
+
+.tagline {
+  margin: 0;
+  font-size: var(--t-body-s);
+  color: var(--ink-3);
+}
+
+.markets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  width: 100%;
+  max-width: 340px;
+  margin-top: var(--s-5);
+}
+
+.market {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+a.market:hover {
+  border-color: var(--gold);
+  background: var(--gold-tint);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.marketSoon {
+  opacity: 0.55;
+}
+
+.marketName {
+  font-weight: 600;
+  font-size: var(--t-body);
+}
+
+.marketMeta {
+  font-size: var(--t-caption);
+  color: var(--ink-3);
+}
+
+.note {
+  margin-top: var(--s-5);
+  font-size: var(--t-caption);
+  color: var(--ink-3);
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@velora/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Jetons de design et règles de marque Velora, extraits du guide d'identité.",
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./base.css": "./base.css",
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "sync-tokens": "node scripts/sync-tokens.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,18 @@
+/**
+ * Second registre — outil interne.
+ *
+ * Même marque que le storefront, mission opposée : ici on cherche la densité
+ * et la lisibilité, pas la séduction. Concrètement, l'identité s'efface —
+ * le serif est réservé au logotype, la ligne de base est resserrée, et l'or
+ * ne sert plus qu'aux accents fonctionnels.
+ */
+:root {
+  --serif: var(--font-serif), Georgia, serif;
+  --sans: var(--font-sans), system-ui, sans-serif;
+}
+
+body {
+  /* Interface dense : on descend d'un cran par rapport au storefront. */
+  font-size: var(--t-body-s);
+  line-height: 1.4;
+}
