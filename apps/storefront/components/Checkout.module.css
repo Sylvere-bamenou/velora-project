@@ -1,0 +1,91 @@
+.wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--s-5) var(--s-4) var(--s-8);
+}
+
+.recapList {
+  list-style: none;
+  margin: 0 0 var(--s-5);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ivory);
+  overflow: hidden;
+}
+
+.recapItem {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.recapItem:last-child {
+  border-bottom: none;
+}
+
+.recapImg {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  object-fit: cover;
+  flex: none;
+}
+
+.recapMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.recapName {
+  font-size: var(--t-caption);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.recapMeta {
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.recapPrice {
+  font-size: var(--t-body-s);
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.ctaWrap {
+  margin-top: var(--s-5);
+}
+
+.cta {
+  width: 100%;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background: #000;
+}
+
+.cta:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ctaNote {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--ink-3);
+  margin-top: var(--s-2);
+}

@@ -1,22 +1,12 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import type { Market } from '@velora/design-system';
 import { allProducts } from '@/lib/catalog';
+import { parseMarket } from '@/lib/markets';
 import { ProductCard } from '@/components/ProductCard';
 import styles from './page.module.css';
 
-const ENABLED_MARKETS: Market[] = ['bj'];
-
 interface PageProps {
   params: Promise<{ market: string }>;
-}
-
-function parseMarket(value: string): Market | null {
-  return (ENABLED_MARKETS as string[]).includes(value) ? (value as Market) : null;
-}
-
-export function generateStaticParams() {
-  return ENABLED_MARKETS.map((market) => ({ market }));
 }
 
 export const metadata: Metadata = {
@@ -33,11 +23,7 @@ export default async function MarketPage({ params }: PageProps) {
 
   return (
     <main className={styles.main}>
-      <header className={styles.header}>
-        <span className={styles.wordmark}>VELORA</span>
-        <p className={styles.tagline}>Livré en 24–48 h · payez le livreur en espèces</p>
-      </header>
-
+      <p className={styles.tagline}>Livré en 24–48 h · payez le livreur en espèces</p>
       <div className={styles.grid}>
         {products.map((p) => (
           <ProductCard key={p.slug} product={p} market={market} />

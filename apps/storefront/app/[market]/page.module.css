@@ -1,24 +1,12 @@
 .main {
   max-width: 960px;
   margin: 0 auto;
-  padding: var(--s-5) var(--s-4) var(--s-8);
-}
-
-.header {
-  text-align: center;
-  padding: var(--s-4) 0 var(--s-6);
-}
-
-.wordmark {
-  font-family: var(--serif);
-  font-size: 28px;
-  letter-spacing: 0.28em;
-  padding-left: 0.28em;
-  color: var(--ink);
+  padding: var(--s-4) var(--s-4) var(--s-8);
 }
 
 .tagline {
-  margin: var(--s-2) 0 0;
+  text-align: center;
+  margin: 0 0 var(--s-5);
   font-size: var(--t-body-s);
   color: var(--ink-3);
 }
