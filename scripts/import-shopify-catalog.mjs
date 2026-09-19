@@ -15,12 +15,46 @@
  *   node scripts/import-shopify-catalog.mjs [domaine.myshopify.com]
  *   SHOPIFY_STORE_DOMAIN=... node scripts/import-shopify-catalog.mjs
  */
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import { dirname, resolve, extname } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(here, '..');
+
+/** Dossier d'hébergement local des images rapatriées. */
+const IMG_DIR = resolve(ROOT, 'apps/storefront/public/assets/shopify');
+/** Chemin public servi par le storefront. */
+const IMG_PUBLIC = '/assets/shopify';
+
+/**
+ * Télécharge une image et renvoie son chemin local public.
+ * Nom stable et unique : basename + hash court de l'URL, pour couper
+ * définitivement la dépendance au CDN Shopify.
+ */
+async function downloadImage(url, cache) {
+  if (!url) return null;
+  if (cache.has(url)) return cache.get(url);
+
+  const clean = url.split('?')[0];
+  const ext = extname(clean) || '.jpg';
+  const hash = createHash('sha1').update(url).digest('hex').slice(0, 10);
+  const name = `${hash}${ext}`;
+  const dest = resolve(IMG_DIR, name);
+  const publicPath = `${IMG_PUBLIC}/${name}`;
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.log(`  ⚠ image ${res.status} : ${clean.slice(-40)}`);
+    cache.set(url, null);
+    return null;
+  }
+  const buf = Buffer.from(await res.arrayBuffer());
+  writeFileSync(dest, buf);
+  cache.set(url, publicPath);
+  return publicPath;
+}
 
 const DOMAIN =
   process.argv[2] || process.env.SHOPIFY_STORE_DOMAIN || 'jngiej-ax.myshopify.com';
@@ -107,6 +141,28 @@ async function main() {
   for (const [t, n] of titleDupes) {
     if (n > 1) console.log(`  ⚠ titre en double (${n}×) : ${t.slice(0, 50)}`);
   }
+
+  // ─── Rapatriement des images : on coupe la dépendance au CDN Shopify ───
+  mkdirSync(IMG_DIR, { recursive: true });
+  const imgCache = new Map();
+  let downloaded = 0;
+  for (const p of catalog) {
+    for (const v of p.variants) {
+      const local = await downloadImage(v.image, imgCache);
+      if (local && v.image) downloaded++;
+      v.image = local;
+    }
+    p.images = (
+      await Promise.all(
+        p.images.map(async (img) => {
+          const local = await downloadImage(img.src, imgCache);
+          if (local) downloaded++;
+          return local ? { src: local, alt: img.alt } : null;
+        }),
+      )
+    ).filter((x) => x != null);
+  }
+  console.log(`  ${downloaded} images rapatriées dans public/assets/shopify (${imgCache.size} uniques)`);
 
   // ─── Sortie 1 : JSON pour le storefront ───
   const jsonPath = resolve(ROOT, 'apps/storefront/lib/catalog.generated.json');

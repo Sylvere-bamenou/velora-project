@@ -2,7 +2,7 @@
   "_generated": "Ne pas éditer à la main. Régénéré par scripts/import-shopify-catalog.mjs",
   "_source": {
     "domain": "jngiej-ax.myshopify.com",
-    "importedAt": "2026-09-19T18:29:18.203Z",
+    "importedAt": "2026-09-19T18:42:55.877Z",
     "count": 9
   },
   "products": [
@@ -28,27 +28,27 @@
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-10.jpg?v=1781530077",
+          "src": "/assets/shopify/5caa263001.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-06.jpg?v=1781530077",
+          "src": "/assets/shopify/f7dad11937.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H8b8fdf3ab5fe4cd7ae456b0e8a4322a7J.png?v=1773097943",
+          "src": "/assets/shopify/99c5da2d8a.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9dd1fc5fd79248e29f6179b23915bc792.png?v=1773097943",
+          "src": "/assets/shopify/8203d9b21a.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/main_imageHdb4a4cccb5a04fb7918ccf233cae21f9Y.png?v=1781530219",
+          "src": "/assets/shopify/cb4c76b259.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-26-49_10cbed50-50c5-4aff-8e4d-60b6335233fc.jpg?v=1781530659",
+          "src": "/assets/shopify/f6d1386a65.jpg",
           "alt": null
         }
       ],
@@ -85,7 +85,7 @@
           "price": 16000,
           "priceBefore": 18500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH4113157df49c46c38529251051c7b8fdG.jpg?v=1784898404"
+          "image": "/assets/shopify/72b3da1141.jpg"
         },
         {
           "id": "44453399756888",
@@ -96,36 +96,36 @@
           "price": 16000,
           "priceBefore": 18500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH84b6cabcc5f6437ab0dfd02e9fa776a7b.jpg?v=1784898404"
+          "image": "/assets/shopify/8961973d53.jpg"
         }
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH4113157df49c46c38529251051c7b8fdG.jpg?v=1784898404",
+          "src": "/assets/shopify/72b3da1141.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9eb53eb3bb364c5b836dc2dfd45762734.jpg?v=1784897504",
+          "src": "/assets/shopify/254db3f2b4.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H38b245c1c8504c7386b4097909e0c61fh.jpg?v=1784897505",
+          "src": "/assets/shopify/19f0421bc1.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH84b6cabcc5f6437ab0dfd02e9fa776a7b_c6051663-14f5-415f-b0fe-085e45a856b6.jpg?v=1784899789",
+          "src": "/assets/shopify/3d2ad26a1f.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H6d03dc13752841729909c69208c521167.jpg?v=1784897505",
+          "src": "/assets/shopify/424eadecea.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H6f39cfe91ee04bdd991aa2e0431cb980K.jpg?v=1784897505",
+          "src": "/assets/shopify/c403db6705.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH84b6cabcc5f6437ab0dfd02e9fa776a7b.jpg?v=1784898404",
+          "src": "/assets/shopify/8961973d53.jpg",
           "alt": null
         }
       ],
@@ -163,7 +163,7 @@
           "price": 12900,
           "priceBefore": 15500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H7ae979e441574b20a96093e787bfba96U.jpg?v=1784809434"
+          "image": "/assets/shopify/95c276eb5e.jpg"
         },
         {
           "id": "44439819124824",
@@ -174,7 +174,7 @@
           "price": 12900,
           "priceBefore": 15500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hcacd78c099be44188d2c75140e6fea0at.jpg?v=1784809435"
+          "image": "/assets/shopify/9ed55e956b.jpg"
         },
         {
           "id": "44439819157592",
@@ -185,36 +185,36 @@
           "price": 12900,
           "priceBefore": 15500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H35cf2ccf95854b9d91d66fab3d72cb7aV.png?v=1784809439"
+          "image": "/assets/shopify/da5bc4c89d.png"
         }
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H7ae979e441574b20a96093e787bfba96U.jpg?v=1784809434",
+          "src": "/assets/shopify/95c276eb5e.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H75a9a09f992f44edaa1113c4ecc90391g.jpg?v=1784809436",
+          "src": "/assets/shopify/9206606b7f.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H17ccb15c5f3d49cca0e3140c0947f3393.png?v=1784809439",
+          "src": "/assets/shopify/f43eec11b2.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hcacd78c099be44188d2c75140e6fea0at.jpg?v=1784809435",
+          "src": "/assets/shopify/9ed55e956b.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H35cf2ccf95854b9d91d66fab3d72cb7aV.png?v=1784809439",
+          "src": "/assets/shopify/da5bc4c89d.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H4a614d099d354776a8c071109c94553ba.png?v=1784809439",
+          "src": "/assets/shopify/32d6a42ecb.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H046cb5326a2c490f97adde86105ad62a3.jpg?v=1784809435",
+          "src": "/assets/shopify/ee2dc27f8d.jpg",
           "alt": null
         }
       ],
@@ -252,7 +252,7 @@
           "price": 15900,
           "priceBefore": 18500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb62816e8af6148b49eb576b1a04e0737W.jpg?v=1784805572"
+          "image": "/assets/shopify/add26b4fcb.jpg"
         },
         {
           "id": "44438113157208",
@@ -263,7 +263,7 @@
           "price": 15900,
           "priceBefore": 18500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb4f3282ed3f046ac8c7e96634124de30a.jpg?v=1784805576"
+          "image": "/assets/shopify/3b9739aa84.jpg"
         },
         {
           "id": "44438113091672",
@@ -274,36 +274,36 @@
           "price": 15900,
           "priceBefore": 18500,
           "available": true,
-          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H79bef012221a4a7b8e1cbef42ebe435ak_9f84a0e7-53ff-4ec8-ad77-c1348773c47a.jpg?v=1784806925"
+          "image": "/assets/shopify/f20d75d096.jpg"
         }
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb62816e8af6148b49eb576b1a04e0737W.jpg?v=1784805572",
+          "src": "/assets/shopify/add26b4fcb.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H905c0fa1db334635b25d2d32e4b22600f.png?v=1784805581",
+          "src": "/assets/shopify/a967d1ba9c.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hf8ccd7338ef84edf8b1521b770de2939J.jpg?v=1784805569",
+          "src": "/assets/shopify/240dc984db.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H79bef012221a4a7b8e1cbef42ebe435ak.jpg?v=1784805576",
+          "src": "/assets/shopify/b44bc5d92e.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H8a9e091b035c48d5ae07abc26cc0877b0.jpg?v=1784805575",
+          "src": "/assets/shopify/60832ab066.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb4f3282ed3f046ac8c7e96634124de30a.jpg?v=1784805576",
+          "src": "/assets/shopify/3b9739aa84.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H79bef012221a4a7b8e1cbef42ebe435ak_9f84a0e7-53ff-4ec8-ad77-c1348773c47a.jpg?v=1784806925",
+          "src": "/assets/shopify/f20d75d096.jpg",
           "alt": null
         }
       ],
@@ -380,27 +380,27 @@
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H19e658aedfa04d689e4cd34ae453c6023.jpg?v=1784800089",
+          "src": "/assets/shopify/150107539e.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hba1aab2a09de4d969a2075dccf4c314fU.jpg?v=1784800089",
+          "src": "/assets/shopify/2c4120c53c.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H71395de7aeeb4cf0ad2db02f206411bdf.jpg?v=1784800089",
+          "src": "/assets/shopify/639324fadb.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/He3576d8b89744e0eb2c4ad505048be6fd.jpg?v=1784800089",
+          "src": "/assets/shopify/cec81e5f75.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9fa1fbc2a88a40239ac6e9fa7af11c52a.jpg?v=1784800089",
+          "src": "/assets/shopify/613861a928.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/ChatGPT_Image_Sep_19_2026_09_16_31_AM.png?v=1789805833",
+          "src": "/assets/shopify/437992ba18.png",
           "alt": null
         }
       ],
@@ -441,23 +441,23 @@
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9206049c540a47d8b08fdb1c453b9730N.jpg?v=1774408391",
+          "src": "/assets/shopify/ba5c93a7e7.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Ha45e129368664e1388b26d0dd50d5ea8t.jpg?v=1774408412",
+          "src": "/assets/shopify/69e3b491c2.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H98fdd3cd6ab6471398b43cca5deb09bbd.jpg?v=1774408302",
+          "src": "/assets/shopify/812b49edd5.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hbf8f6e3c276144d9ad8761d43d13814cm.jpg?v=1774408302",
+          "src": "/assets/shopify/f6d872bd2e.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H2784db8e624b4a60b6de708e61653caej.jpg?v=1774408302",
+          "src": "/assets/shopify/022fa76611.jpg",
           "alt": null
         }
       ],
@@ -498,27 +498,27 @@
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hde82312c1a82493296080cb7877f95edE.jpg?v=1767430306",
+          "src": "/assets/shopify/c8747ce7d9.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H7851b140dec243c3a3fa41c8fc2148bfW.jpg?v=1767430306",
+          "src": "/assets/shopify/49ab32308c.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Haba7c4bbb8134509ae8c101f996c5b31L.jpg?v=1767430306",
+          "src": "/assets/shopify/222291e3f9.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hc9071aafe84e4fd38e079549673d14ebw.jpg?v=1767430306",
+          "src": "/assets/shopify/495cde520b.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H04fb540e62644883bf303d06f3209015F.jpg?v=1767430308",
+          "src": "/assets/shopify/5bb732c665.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H61f070c6cdb140b094bc5ae1d58c0eb58.jpg?v=1767430307",
+          "src": "/assets/shopify/9c33e497c2.jpg",
           "alt": null
         }
       ],
@@ -571,19 +571,19 @@
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H71bf5ad5b61d41b6ab404722d4d88221G_7808f353-407d-4193-bd58-961649401fa1.png?v=1774432421",
+          "src": "/assets/shopify/faf2beaccc.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hd806765ef063433abaf363e4cd3d057aE_9f105b54-f4ba-4fcf-a98a-26a14b830bd9.png?v=1774432420",
+          "src": "/assets/shopify/b11699f8c2.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb899574e0e504d20880eac5b4ed5041ad_2f914a6d-c971-4c8d-8227-f5096e50dd83.png?v=1774432420",
+          "src": "/assets/shopify/a779033ccd.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/sizes.png?v=1781531496",
+          "src": "/assets/shopify/c11f4e028a.png",
           "alt": null
         }
       ],
@@ -617,27 +617,27 @@
       ],
       "images": [
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-10.jpg?v=1781530077",
+          "src": "/assets/shopify/5caa263001.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-06.jpg?v=1781530077",
+          "src": "/assets/shopify/f7dad11937.jpg",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H8b8fdf3ab5fe4cd7ae456b0e8a4322a7J.png?v=1773097943",
+          "src": "/assets/shopify/99c5da2d8a.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9dd1fc5fd79248e29f6179b23915bc792.png?v=1773097943",
+          "src": "/assets/shopify/8203d9b21a.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/main_imageHdb4a4cccb5a04fb7918ccf233cae21f9Y.png?v=1781530219",
+          "src": "/assets/shopify/cb4c76b259.png",
           "alt": null
         },
         {
-          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-26-49_10cbed50-50c5-4aff-8e4d-60b6335233fc.jpg?v=1781530659",
+          "src": "/assets/shopify/f6d1386a65.jpg",
           "alt": null
         }
       ],
