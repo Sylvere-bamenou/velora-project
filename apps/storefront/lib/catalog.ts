@@ -41,10 +41,15 @@ export interface CatalogProduct {
   images: CatalogImage[];
   priceMin: number;
   priceMax: number;
+  active: boolean;
   source: { platform: string; domain: string; productId: string };
 }
 
-const PRODUCTS = (raw.products as CatalogProduct[]).filter((p) => p.variants.length > 0);
+// Les produits masqués par la curation (doublons, hors positionnement) ne
+// sont ni listés ni accessibles par URL.
+const PRODUCTS = (raw.products as CatalogProduct[]).filter(
+  (p) => p.variants.length > 0 && p.active !== false,
+);
 
 const BY_SLUG = new Map(PRODUCTS.map((p) => [p.slug, p]));
 

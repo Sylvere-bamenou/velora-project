@@ -19,6 +19,7 @@ import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, extname } from 'node:path';
+import { applyOverride, OVERRIDES } from './catalog-overrides.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(here, '..');
@@ -131,6 +132,12 @@ async function main() {
     };
   });
 
+  // ─── Curation : noms sobres, faux prix barrés retirés, produits masqués ───
+  for (const p of catalog) applyOverride(p);
+  const renamed = catalog.filter((p) => OVERRIDES[p.slug]?.name).length;
+  const hidden = catalog.filter((p) => p.active === false);
+  console.log(`  curation : ${renamed} renommés, ${hidden.length} masqués (${hidden.map((p) => p.slug).join(', ') || '—'})`);
+
   // Détection des doublons de handle (aucun attendu, mais le catalogue réel
   // contient deux H-Flex à handles distincts — on les garde, on les signale).
   const seen = new Map();
@@ -195,9 +202,9 @@ async function main() {
     lines.push(
       `insert into products (slug, name, category, description, images, active) values (` +
         `${sqlStr(p.slug)}, ${sqlStr(p.title)}, ${sqlStr(p.productType)}, ${sqlStr(p.description)}, ` +
-        `${sqlStr(JSON.stringify(productImages))}::jsonb, true)` +
+        `${sqlStr(JSON.stringify(productImages))}::jsonb, ${p.active ? 'true' : 'false'})` +
         ` on conflict (slug) do update set name = excluded.name, category = excluded.category, ` +
-        `description = excluded.description, images = excluded.images;`,
+        `description = excluded.description, images = excluded.images, active = excluded.active;`,
     );
     for (const v of p.variants) {
       const sku = v.sku || `${p.slug}-${v.id}`;
