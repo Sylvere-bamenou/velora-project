@@ -1,6 +1,10 @@
 -- ============================================================
 -- Velora · schéma initial (Phase 0)
--- PostgreSQL / Supabase
+-- PostgreSQL (conteneur dédié, voir docker-compose.yml)
+--
+-- Appliquer :
+--   docker compose up -d
+--   psql "postgresql://velora:velora@localhost:5450/velora" -f db/schema.sql
 -- ============================================================
 
 create extension if not exists "pgcrypto";
@@ -202,41 +206,24 @@ create table admin_audit_log (
 create index on admin_audit_log (created_at desc);
 
 -- ─────────────────────────────────────────────────────────────
--- Row Level Security
+-- Accès
 --
--- Aucune de ces tables n'est exposée au client anonyme : le storefront passe
--- par l'API (service role). On active RLS sans policy permissive — tout est
--- donc refusé par défaut, ce qui est l'intention.
+-- Pas de Row Level Security : dans l'architecture Express, seule l'API touche
+-- Postgres (le navigateur ne s'y connecte jamais directement). Le RLS n'aurait
+-- de sens que pour un accès client direct à la base, ce que nous n'avons pas.
+-- Le contrôle d'accès se fait dans l'API.
 -- ─────────────────────────────────────────────────────────────
-alter table market_config      enable row level security;
-alter table products           enable row level security;
-alter table variants           enable row level security;
-alter table orders             enable row level security;
-alter table order_items        enable row level security;
-alter table tracking_events    enable row level security;
-alter table fraud_assessments  enable row level security;
-alter table blacklist          enable row level security;
-alter table admin_audit_log    enable row level security;
 
 -- ─────────────────────────────────────────────────────────────
 -- Seed
+--
+-- Uniquement les marchés : ce sont des données de configuration, pas du
+-- catalogue. Les produits viennent de db/seed-catalog.sql (importé de Shopify),
+-- pas d'ici : le schéma ne doit pas inventer de produit fictif.
 -- ─────────────────────────────────────────────────────────────
 insert into market_config (code, name, currency, phone_prefix, delivery_estimate, free_shipping_threshold, enabled)
 values
   ('bj', 'Bénin',          'XOF', '229', '24–48 h', 50000, true),
   ('ci', 'Côte d''Ivoire', 'XOF', '225', '48–72 h', 50000, false),
-  ('ga', 'Gabon',          'XAF', '241', '3–5 j',   null,  false);
-
-insert into products (slug, name, category)
-values ('montre-chronographe-acier', 'Montre chronographe acier', 'Montres · acier');
-
-insert into variants (product_id, sku, color, size, price, price_before, stock)
-select p.id, v.sku, v.color, v.size, v.price, v.price_before, v.stock
-from products p,
-  (values
-    ('VLR-CHR-NOIR-40', 'Noir', '40 mm', 25000, 35000, 40),
-    ('VLR-CHR-NOIR-42', 'Noir', '42 mm', 25000, 35000, 35),
-    ('VLR-CHR-OR-40',   'Or',   '40 mm', 25000, 35000, 20),
-    ('VLR-CHR-OR-42',   'Or',   '42 mm', 25000, 35000, 18)
-  ) as v(sku, color, size, price, price_before, stock)
-where p.slug = 'montre-chronographe-acier';
+  ('ga', 'Gabon',          'XAF', '241', '3–5 j',   null,  false)
+on conflict (code) do nothing;

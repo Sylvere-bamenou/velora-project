@@ -5,11 +5,11 @@
  * Source : endpoint public /products.json (aucun identifiant requis).
  * Ne récupère QUE le catalogue : produits, variantes, prix, images.
  * Les commandes, clients et statuts de livraison ne sont pas exposés
- * publiquement et exigent un token Admin API (voir apps/api/src/lib/shopify.ts).
+ * publiquement et exigent un token Admin API (voir scripts/migrate-shopify-orders.mjs).
  *
  * Sorties :
  *   apps/storefront/lib/catalog.generated.json   consommé par le storefront
- *   supabase/seed-catalog.sql                     pour quand Supabase est branché
+ *   db/seed-catalog.sql                     à appliquer sur Postgres
  *
  * Usage :
  *   node scripts/import-shopify-catalog.mjs [domaine.myshopify.com]
@@ -174,7 +174,7 @@ async function main() {
   writeFileSync(jsonPath, JSON.stringify(jsonPayload, null, 2) + '\n');
   console.log(`✓ ${jsonPath}`);
 
-  // ─── Sortie 2 : seed SQL pour Supabase ───
+  // ─── Sortie 2 : seed SQL Postgres ───
   const lines = [
     '-- ============================================================',
     '-- Velora · catalogue importé de Shopify',
@@ -203,7 +203,7 @@ async function main() {
     }
     lines.push('');
   }
-  const sqlPath = resolve(ROOT, 'supabase/seed-catalog.sql');
+  const sqlPath = resolve(ROOT, 'db/seed-catalog.sql');
   writeFileSync(sqlPath, lines.join('\n'));
   console.log(`✓ ${sqlPath}`);
 

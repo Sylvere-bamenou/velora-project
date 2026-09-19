@@ -71,7 +71,7 @@ ordersRouter.post('/orders', orderLimiter, async (req, res) => {
     userAgent: req.get('user-agent'),
   });
 
-  // @todo Phase 1 — persister la commande (Supabase) et le snapshot du panier.
+  // @todo Phase 1 — persister la commande (Postgres) et le snapshot du panier.
   // @todo Phase 3 — pousser l'événement CAPI en queue avec ce même event_id.
   const orderId = `VLR-${body.market.toUpperCase()}-${Math.floor(100000 + Math.random() * 900000)}`;
 

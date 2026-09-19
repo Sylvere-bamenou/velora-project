@@ -16,7 +16,14 @@ pnpm dev:admin            # http://localhost:3001
 pnpm dev:api              # http://localhost:4000
 ```
 
-Le schéma de base est dans [`supabase/schema.sql`](supabase/schema.sql).
+La base est un PostgreSQL en conteneur :
+
+```bash
+docker compose up -d
+psql "postgresql://velora:velora@localhost:5450/velora" -f db/schema.sql
+```
+
+Le schéma est dans [`db/schema.sql`](db/schema.sql).
 
 ## Structure
 
@@ -30,7 +37,7 @@ packages/
   tracking/          event_id partagé, hachage PII, dédup Meta/TikTok
   fraud/             moteur de score — shadow mode par défaut
 design/              guide d'identité + prototype (Claude Design)
-supabase/            schéma SQL + seed catalogue importé
+db/                  schéma SQL + seed catalogue importé
 scripts/             import-shopify-catalog.mjs
 ```
 
@@ -48,7 +55,7 @@ pnpm import:catalog          # défaut : jngiej-ax.myshopify.com
 
 Aspire les produits, **télécharge les images en local**
 (`apps/storefront/public/assets/shopify`, plus aucun lien vers le CDN Shopify)
-et régénère `apps/storefront/lib/catalog.generated.json` + `supabase/seed-catalog.sql`.
+et régénère `apps/storefront/lib/catalog.generated.json` + `db/seed-catalog.sql`.
 Le storefront affiche les produits réels sur `/bj` et `/bj/produit/<slug>`.
 
 **Commandes** (Admin API, token à usage unique) :
@@ -57,7 +64,7 @@ Le storefront affiche les produits réels sur `/bj` et `/bj/produit/<slug>`.
 SHOPIFY_STORE_DOMAIN=... SHOPIFY_ADMIN_TOKEN=shpat_... pnpm migrate:orders
 ```
 
-Importe tout l'historique dans `supabase/seed-orders.sql` (non versionné : il
+Importe tout l'historique dans `db/seed-orders.sql` (non versionné : il
 contient des données clients), puis Shopify peut être coupé. Procédure de
 création du token dans l'en-tête de
 [`scripts/migrate-shopify-orders.mjs`](scripts/migrate-shopify-orders.mjs).
@@ -84,4 +91,6 @@ Le CI ajoute un garde-fou : `tokens.css` est régénéré depuis le guide d'iden
 
 Fait : monorepo, design system extrait du guide, squelette API (helmet, zod, rate limiting, handler d'erreurs, `/health`), tunnel COD fonctionnel du produit à la confirmation, dashboard en lecture, schéma SQL, CI.
 
-Pas encore : persistance (tout est en mémoire), envois CAPI réels, intégrations FingerprintJS / IPQualityScore / HLR, auth admin. Les visuels du storefront sont des placeholders — voir [`apps/storefront/public/assets`](apps/storefront/public/assets/README.md).
+Catalogue réel importé de Shopify (produits, variantes, prix, images locales), storefront branché dessus, base Postgres en conteneur avec schéma appliqué.
+
+Pas encore : persistance runtime (l'API ne lit pas encore la base, tout est en mémoire), envois CAPI réels, intégrations FingerprintJS / IPQualityScore / HLR, auth admin.

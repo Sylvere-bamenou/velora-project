@@ -13,9 +13,11 @@ const schema = z.object({
   /** Origines autorisées pour CORS, séparées par des virgules. */
   CORS_ORIGINS: z.string().default('http://localhost:3000,http://localhost:3001'),
 
-  // ─── Supabase ───
-  SUPABASE_URL: z.string().url().optional(),
-  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
+  // ─── PostgreSQL (conteneur dédié, voir docker-compose.yml) ───
+  DATABASE_URL: z
+    .string()
+    .url()
+    .default('postgresql://velora:velora@localhost:5450/velora'),
 
   // Shopify n'a AUCUNE variable ici : l'API runtime est indépendante de
   // Shopify. La migration one-shot (catalogue + historique commandes) vit

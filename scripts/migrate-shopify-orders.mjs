@@ -17,7 +17,7 @@
  *   SHOPIFY_ADMIN_TOKEN=shpat_xxx \
  *   node scripts/migrate-shopify-orders.mjs
  *
- * Sortie : supabase/seed-orders.sql (à relire avant application) et
+ * Sortie : db/seed-orders.sql (à relire avant application) et
  * un dump brut horodaté pour vérification. Idempotent : upsert par référence.
  */
 import { writeFileSync } from 'node:fs';
@@ -49,7 +49,7 @@ function toAmount(str) {
   return Number.isFinite(n) ? n : 0;
 }
 
-/** Statut Shopify → order_status de Velora (voir supabase/schema.sql). */
+/** Statut Shopify → order_status de Velora (voir db/schema.sql). */
 function mapStatus(o) {
   if (o.cancelled_at) return 'cancelled';
   if (o.fulfillment_status === 'fulfilled') return 'delivered';
@@ -132,11 +132,11 @@ async function main() {
     );
   }
 
-  const sqlPath = resolve(ROOT, 'supabase/seed-orders.sql');
+  const sqlPath = resolve(ROOT, 'db/seed-orders.sql');
   writeFileSync(sqlPath, lines.join('\n') + '\n');
   console.log(`✓ ${sqlPath}`);
 
-  const dumpPath = resolve(ROOT, `supabase/shopify-orders-dump.json`);
+  const dumpPath = resolve(ROOT, 'db/shopify-orders-dump.json');
   writeFileSync(dumpPath, JSON.stringify(orders, null, 2));
   console.log(`✓ ${dumpPath} (dump brut pour vérification)`);
 

@@ -1,0 +1,29 @@
+# PostgreSQL de développement pour Velora.
+# Port hôte dédié (5450) pour cohabiter avec les autres conteneurs de la machine.
+#
+#   docker compose up -d
+#   psql "$DATABASE_URL" -f db/schema.sql
+#
+# DATABASE_URL correspondante (voir .env.example) :
+#   postgresql://velora:velora@localhost:5450/velora
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: velora-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: velora
+      POSTGRES_PASSWORD: velora
+      POSTGRES_DB: velora
+    ports:
+      - '5450:5432'
+    volumes:
+      - velora-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U velora -d velora']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  velora-pgdata:

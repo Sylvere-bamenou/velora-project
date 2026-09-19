@@ -7,7 +7,7 @@ export const marketsRouter: Router = Router();
  * Configuration par marché.
  *
  * En Phase 0 les configs sont en dur ; elles passeront en table `market_config`
- * (Supabase) pour être éditables depuis le dashboard sans redéploiement — c'est
+ * (Postgres) pour être éditables depuis le dashboard sans redéploiement — c'est
  * le principe fondateur du multi-marchés (§3 du plan).
  *
  * NB — les Pixel ID / Access Token Meta, TikTok et Snapchat ne figurent PAS
