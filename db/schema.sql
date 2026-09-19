@@ -54,6 +54,10 @@ create table products (
   name        text        not null,
   category    text,
   description text,
+  -- Galerie produit (URLs locales après rapatriement). Séparée des images de
+  -- variante : la carte et la page produit affichent la galerie, la variante
+  -- n'a qu'une image de mise en avant.
+  images      jsonb       not null default '[]'::jsonb,
   active      boolean     not null default true,
   created_at  timestamptz not null default now()
 );
@@ -136,9 +140,12 @@ create index on order_items (order_id);
 create type tracking_status as enum ('pending', 'sent', 'failed');
 
 create table tracking_events (
-  -- L'unicité de event_id EST la garantie d'idempotence : un retry de la
-  -- queue ne peut pas produire un doublon côté Meta/TikTok.
-  event_id    text primary key,
+  -- Un même event_id est partagé par le pixel navigateur et CAPI (c'est ce
+  -- qui garantit la déduplication), et il part vers plusieurs plateformes.
+  -- La clé est donc (event_id, platform) : une ligne par plateforme, chacune
+  -- avec son propre statut d'envoi, mais le même event_id que Meta/TikTok
+  -- dédupliquent indépendamment.
+  event_id    text not null,
   order_id    uuid references orders(id) on delete set null,
   market      text not null references market_config(code),
   event_name  text not null,
@@ -148,7 +155,8 @@ create table tracking_events (
   error       text,
   attempts    integer not null default 0,
   created_at  timestamptz not null default now(),
-  sent_at     timestamptz
+  sent_at     timestamptz,
+  primary key (event_id, platform)
 );
 
 create index on tracking_events (status, created_at);

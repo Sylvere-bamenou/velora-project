@@ -15,7 +15,7 @@
  *   node scripts/import-shopify-catalog.mjs [domaine.myshopify.com]
  *   SHOPIFY_STORE_DOMAIN=... node scripts/import-shopify-catalog.mjs
  */
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, extname } from 'node:path';
@@ -43,6 +43,12 @@ async function downloadImage(url, cache) {
   const name = `${hash}${ext}`;
   const dest = resolve(IMG_DIR, name);
   const publicPath = `${IMG_PUBLIC}/${name}`;
+
+  // Déjà téléchargée lors d'un run précédent : on ne refait pas le réseau.
+  if (existsSync(dest)) {
+    cache.set(url, publicPath);
+    return publicPath;
+  }
 
   const res = await fetch(url);
   if (!res.ok) {
@@ -185,10 +191,13 @@ async function main() {
     '',
   ];
   for (const p of catalog) {
+    const productImages = p.images.map((img) => img.src);
     lines.push(
-      `insert into products (slug, name, category, description, active) values (` +
-        `${sqlStr(p.slug)}, ${sqlStr(p.title)}, ${sqlStr(p.productType)}, ${sqlStr(p.description)}, true)` +
-        ` on conflict (slug) do update set name = excluded.name, category = excluded.category, description = excluded.description;`,
+      `insert into products (slug, name, category, description, images, active) values (` +
+        `${sqlStr(p.slug)}, ${sqlStr(p.title)}, ${sqlStr(p.productType)}, ${sqlStr(p.description)}, ` +
+        `${sqlStr(JSON.stringify(productImages))}::jsonb, true)` +
+        ` on conflict (slug) do update set name = excluded.name, category = excluded.category, ` +
+        `description = excluded.description, images = excluded.images;`,
     );
     for (const v of p.variants) {
       const sku = v.sku || `${p.slug}-${v.id}`;

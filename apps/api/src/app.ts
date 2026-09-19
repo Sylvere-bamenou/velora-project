@@ -7,6 +7,7 @@ import { generalLimiter } from './middleware/rate-limit.js';
 import { errorHandler, notFound } from './middleware/error.js';
 import { healthRouter } from './routes/health.js';
 import { marketsRouter } from './routes/markets.js';
+import { productsRouter } from './routes/products.js';
 import { ordersRouter } from './routes/orders.js';
 import { trackingRouter } from './routes/tracking.js';
 
@@ -33,6 +34,7 @@ export function createApp(): Express {
 
   app.use('/', healthRouter);
   app.use('/v1', marketsRouter);
+  app.use('/v1', productsRouter);
   app.use('/v1', ordersRouter);
   app.use('/v1', trackingRouter);
 
