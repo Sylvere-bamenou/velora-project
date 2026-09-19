@@ -1,20 +1,19 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { formatAmount, priceForMarket, COD_COPY, REASSURANCE_POINTS, type Market } from '@velora/design-system';
 import {
-  formatAmount,
-  priceForMarket,
-  COD_COPY,
-  REASSURANCE_POINTS,
-  type Market,
-} from '@velora/design-system';
-import { packTotal, type Product } from '@/lib/catalog';
+  defaultSelection,
+  findVariant,
+  variantImage,
+  type CatalogProduct,
+} from '@/lib/catalog';
 import styles from './ProductFlow.module.css';
 
 type Screen = 'product' | 'order' | 'confirm';
 
 interface Props {
-  product: Product;
+  product: CatalogProduct;
   market: Market;
   deliveryEstimate: string;
 }
@@ -28,7 +27,6 @@ interface FormState {
 
 const EMPTY_FORM: FormState = { name: '', phone: '', city: 'Cotonou', address: '' };
 
-/** Mêmes règles que le schéma zod de l'API — volontairement permissives. */
 function validate(form: FormState) {
   return {
     name: !form.name.trim(),
@@ -39,25 +37,34 @@ function validate(form: FormState) {
 
 export function ProductFlow({ product, market, deliveryEstimate }: Props) {
   const [screen, setScreen] = useState<Screen>('product');
-  const [colorName, setColorName] = useState(product.colors[0]!.name);
-  const [size, setSize] = useState(product.sizes[0]!);
-  const [packId, setPackId] = useState(product.packs[0]!.id);
+  const [selection, setSelection] = useState<string[]>(() => defaultSelection(product));
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [touched, setTouched] = useState(false);
   const [orderNo, setOrderNo] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  const color = product.colors.find((c) => c.name === colorName)!;
-  const pack = product.packs.find((p) => p.id === packId)!;
-  const total = useMemo(() => packTotal(product, pack), [product, pack]);
-  const saving = product.unitPriceBefore - product.unitPrice;
-  const discountPct = Math.round((saving / product.unitPriceBefore) * 100);
+  const variant = useMemo(() => findVariant(product, selection), [product, selection]);
+  const image = variantImage(product, variant);
+  const saving = variant.priceBefore ? variant.priceBefore - variant.price : 0;
+  const discountPct = variant.priceBefore
+    ? Math.round((saving / variant.priceBefore) * 100)
+    : 0;
+
+  const selectionLabel = selection.filter(Boolean).join(' · ');
 
   const errors = validate(form);
   const showErrors = touched ? errors : { name: false, phone: false, address: false };
 
-  const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const setField = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  function pickOption(optionIndex: number, value: string) {
+    setSelection((prev) => {
+      const next = [...prev];
+      next[optionIndex] = value;
+      return next;
+    });
+  }
 
   async function submit() {
     if (errors.name || errors.phone || errors.address) {
@@ -98,109 +105,66 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
         {screen === 'product' && (
           <div className={styles.screen}>
             <div className={styles.gallery}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.galleryImg} src={color.image} alt={product.name} />
-              <span className={styles.promoBadge}>−{discountPct} %</span>
+              {image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className={styles.galleryImg} src={image} alt={product.title} />
+              )}
+              {discountPct > 0 && <span className={styles.promoBadge}>−{discountPct} %</span>}
             </div>
 
-            <div className={styles.thumbs}>
-              {[color.image, ...product.gallery].map((img, i) => (
-                <button
-                  key={img}
-                  className={`${styles.thumb} ${i === 0 ? styles.thumbActive : ''}`}
-                  aria-label={`Vue ${i + 1}`}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className={styles.thumbImg} src={img} alt="" />
-                </button>
-              ))}
-            </div>
+            {product.images.length > 1 && (
+              <div className={styles.thumbs}>
+                {product.images.slice(0, 4).map((img, i) => (
+                  <span key={img.src} className={`${styles.thumb} ${i === 0 ? styles.thumbActive : ''}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img className={styles.thumbImg} src={img.src} alt="" />
+                  </span>
+                ))}
+              </div>
+            )}
 
             <div className={styles.body}>
-              <div className={styles.eyebrow}>{product.category}</div>
-              <h1 className={styles.title}>{product.name}</h1>
+              {product.productType && <div className={styles.eyebrow}>{product.productType}</div>}
+              <h1 className={styles.title}>{product.title}</h1>
 
               <div className={styles.priceRow}>
                 <div className={styles.priceNow}>
-                  <span className={styles.priceValue}>{formatAmount(product.unitPrice)}</span>
+                  <span className={variant.priceBefore ? styles.priceValuePromo : styles.priceValue}>
+                    {formatAmount(variant.price)}
+                  </span>
                   <span className={styles.priceCurrency}>FCFA</span>
                 </div>
-                <span className={styles.priceBefore}>
-                  {formatAmount(product.unitPriceBefore)} FCFA
-                </span>
+                {variant.priceBefore && (
+                  <span className={styles.priceBefore}>{formatAmount(variant.priceBefore)} FCFA</span>
+                )}
               </div>
-              <div className={styles.saving}>Vous économisez {formatAmount(saving)} FCFA</div>
+              {saving > 0 && (
+                <div className={styles.saving}>Vous économisez {formatAmount(saving)} FCFA</div>
+              )}
 
-              <div className={styles.label}>
-                Couleur — <b className={styles.labelValue}>{color.name}</b>
-              </div>
-              <div className={styles.swatches}>
-                {product.colors.map((c) => (
-                  <button
-                    key={c.name}
-                    className={`${styles.swatch} ${c.name === colorName ? styles.swatchActive : ''}`}
-                    style={{ background: c.swatch }}
-                    onClick={() => setColorName(c.name)}
-                    aria-label={c.name}
-                    aria-pressed={c.name === colorName}
-                  />
-                ))}
-              </div>
+              {product.options.map((option, i) => (
+                <div key={option.name}>
+                  <div className={styles.label}>
+                    {option.name} — <b className={styles.labelValue}>{selection[i]}</b>
+                  </div>
+                  <div className={styles.chips}>
+                    {option.values.map((value) => (
+                      <button
+                        key={value}
+                        className={`${styles.chip} ${selection[i] === value ? styles.chipActive : ''}`}
+                        onClick={() => pickOption(i, value)}
+                        aria-pressed={selection[i] === value}
+                      >
+                        {value}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
 
-              <div className={styles.label}>Boîtier</div>
-              <div className={styles.chips}>
-                {product.sizes.map((s) => (
-                  <button
-                    key={s}
-                    className={`${styles.chip} ${s === size ? styles.chipActive : ''}`}
-                    onClick={() => setSize(s)}
-                    aria-pressed={s === size}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-
-              <div className={styles.label}>Pack</div>
-              <div className={styles.packs}>
-                {product.packs.map((p) => {
-                  const active = p.id === packId;
-                  // Sans libellé explicite, le nom accessible se calcule par
-                  // concaténation du texte : « ×1 » + « 25 000 FCFA » donne
-                  // « ×125 000 FCFA », que le lecteur d'écran annonce comme un
-                  // prix de 125 000. Le montant est justement ce que le client
-                  // COD doit entendre juste.
-                  const label = [
-                    `Pack ${p.label}`,
-                    p.tag ? `remise ${p.tag}` : null,
-                    priceForMarket(packTotal(product, p), market),
-                  ]
-                    .filter(Boolean)
-                    .join(', ');
-                  return (
-                    <button
-                      key={p.id}
-                      className={`${styles.pack} ${active ? styles.packActive : ''}`}
-                      onClick={() => setPackId(p.id)}
-                      aria-pressed={active}
-                      aria-label={label}
-                    >
-                      <span className={styles.packLeft}>
-                        <span className={`${styles.radio} ${active ? styles.radioActive : ''}`}>
-                          <span
-                            className={`${styles.radioDot} ${active ? styles.radioDotActive : ''}`}
-                          />
-                        </span>
-                        <span className={styles.packLabel}>{p.label}</span>
-                        {p.tag && <span className={styles.packTag}>{p.tag}</span>}
-                      </span>
-                      <span className={styles.packPrice}>
-                        {formatAmount(packTotal(product, p))} FCFA
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+              {product.description && (
+                <p className={styles.description}>{product.description}</p>
+              )}
 
               <div className={styles.reassure}>
                 {REASSURANCE_POINTS.map((r) => (
@@ -222,16 +186,16 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
             </p>
 
             <div className={styles.recap}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.recapImg} src={color.image} alt="" />
+              {image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className={styles.recapImg} src={image} alt="" />
+              )}
               <div className={styles.recapMain}>
-                <div className={styles.recapName}>{product.name}</div>
-                <div className={styles.recapVariant}>
-                  {color.name} · {size} · Pack {pack.label}
-                </div>
+                <div className={styles.recapName}>{product.title}</div>
+                {selectionLabel && <div className={styles.recapVariant}>{selectionLabel}</div>}
               </div>
               <div className={styles.recapPrice}>
-                {formatAmount(total)}
+                {formatAmount(variant.price)}
                 <div className={styles.recapCurrency}>FCFA</div>
               </div>
             </div>
@@ -242,7 +206,7 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
                 <input
                   className={`${styles.input} ${showErrors.name ? styles.inputError : ''}`}
                   value={form.name}
-                  onChange={set('name')}
+                  onChange={setField('name')}
                   placeholder="Ex. Kofi Mensah"
                   autoComplete="name"
                   aria-invalid={showErrors.name}
@@ -255,7 +219,7 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
                 <input
                   className={`${styles.input} ${showErrors.phone ? styles.inputError : ''}`}
                   value={form.phone}
-                  onChange={set('phone')}
+                  onChange={setField('phone')}
                   inputMode="tel"
                   autoComplete="tel"
                   placeholder="+229 01 97 00 00 00"
@@ -271,7 +235,7 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
                 <input
                   className={styles.input}
                   value={form.city}
-                  onChange={set('city')}
+                  onChange={setField('city')}
                   autoComplete="address-level2"
                 />
               </label>
@@ -281,7 +245,7 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
                 <input
                   className={`${styles.input} ${showErrors.address ? styles.inputError : ''}`}
                   value={form.address}
-                  onChange={set('address')}
+                  onChange={setField('address')}
                   placeholder="Quartier, repère proche…"
                   autoComplete="street-address"
                   aria-invalid={showErrors.address}
@@ -294,7 +258,7 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
 
             <div className={styles.totalRow}>
               <span className={styles.totalLabel}>À régler au livreur</span>
-              <span className={styles.totalValue}>{priceForMarket(total, market)}</span>
+              <span className={styles.totalValue}>{priceForMarket(variant.price, market)}</span>
             </div>
           </div>
         )}
@@ -316,7 +280,8 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
               <div className={styles.receiptRow}>
                 <span className={styles.receiptKey}>Article</span>
                 <span className={styles.receiptVal}>
-                  {product.name} · {color.name} · {pack.label}
+                  {product.title}
+                  {selectionLabel ? ` · ${selectionLabel}` : ''}
                 </span>
               </div>
               <div className={styles.receiptRow}>
@@ -327,7 +292,7 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
               </div>
               <div className={styles.receiptTotal}>
                 <span className={styles.receiptTotalKey}>À payer en espèces</span>
-                <span className={styles.receiptTotalVal}>{priceForMarket(total, market)}</span>
+                <span className={styles.receiptTotalVal}>{priceForMarket(variant.price, market)}</span>
               </div>
             </div>
 
@@ -341,9 +306,11 @@ export function ProductFlow({ product, market, deliveryEstimate }: Props) {
 
       <footer className={styles.footer}>
         {screen === 'product' && (
-          <button className={styles.cta} onClick={() => setScreen('order')}>
-            {COD_COPY.primaryCta}
-            <span className={styles.ctaAmount}>· {formatAmount(total)}</span>
+          <button className={styles.cta} onClick={() => setScreen('order')} disabled={!variant.available}>
+            {variant.available ? COD_COPY.primaryCta : 'Rupture de stock'}
+            {variant.available && (
+              <span className={styles.ctaAmount}>· {formatAmount(variant.price)}</span>
+            )}
           </button>
         )}
         {screen === 'order' && (

@@ -151,8 +151,23 @@
 .priceValue {
   font-size: 30px;
   font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* Prix en promotion : rouge, pour signaler la réduction face au prix barré. */
+.priceValuePromo {
+  font-size: 30px;
+  font-weight: 600;
   color: var(--danger);
   letter-spacing: -0.01em;
+}
+
+.description {
+  margin-top: var(--s-5);
+  font-size: var(--t-body-s);
+  line-height: 1.6;
+  color: var(--ink-2);
 }
 
 .priceCurrency {

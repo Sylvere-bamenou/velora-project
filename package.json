@@ -14,7 +14,8 @@
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "lint": "pnpm -r lint",
-    "test": "pnpm -r test"
+    "test": "pnpm -r test",
+    "import:catalog": "node scripts/import-shopify-catalog.mjs"
   },
   "devDependencies": {
     "typescript": "^5.7.2"

@@ -1,0 +1,653 @@
+{
+  "_generated": "Ne pas éditer à la main. Régénéré par scripts/import-shopify-catalog.mjs",
+  "_source": {
+    "domain": "jngiej-ax.myshopify.com",
+    "importedAt": "2026-09-19T18:29:18.203Z",
+    "count": 9
+  },
+  "products": [
+    {
+      "slug": "hbelt-tg",
+      "title": "H-Flex Belt™ – La ceinture sans boucle, confortable et ajustable",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "Découvrez la H-Flex Belt™, la ceinture révolutionnaire sans boucle qui vous offre confort et liberté totale. Fini la douleur au ventre, fini la boucle qui gêne : ◈ Confort absolu : fini la boucle qui rentre dans le ventre ◈ Ultra simple à utiliser : crochet + Velcro → prêt en 10 secondes ◈ Maintien parfait : votre pantalon reste en place toute la journée ◈ Unisexe & Taille Unique : s’adapte à toutes les morphologies",
+      "options": [],
+      "variants": [
+        {
+          "id": "44834722119768",
+          "sku": null,
+          "optionValues": [
+            "Default Title"
+          ],
+          "price": 12500,
+          "priceBefore": 15500,
+          "available": true,
+          "image": null
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-10.jpg?v=1781530077",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-06.jpg?v=1781530077",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H8b8fdf3ab5fe4cd7ae456b0e8a4322a7J.png?v=1773097943",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9dd1fc5fd79248e29f6179b23915bc792.png?v=1773097943",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/main_imageHdb4a4cccb5a04fb7918ccf233cae21f9Y.png?v=1781530219",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-26-49_10cbed50-50c5-4aff-8e4d-60b6335233fc.jpg?v=1781530659",
+          "alt": null
+        }
+      ],
+      "priceMin": 12500,
+      "priceMax": 12500,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "9037986136152"
+      }
+    },
+    {
+      "slug": "tomi-dynasty-t106",
+      "title": "TOMI Dynasty ™ T106 – La montre qui attire les regards",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "L'élégance ne fait pas de bruit. Elle se remarque. Vous n'avez pas besoin d'une montre à plusieurs centaines d'euros pour avoir de l'allure. La TOMI Dynasty™ T106 combine un design moderne, un cadran ajouré fascinant et une finition haut de gamme qui donnent immédiatement une impression de prestige. ◈ Design premium ◈ Style minimaliste et moderne ◈ Détails inspirés de l'horlogerie de luxe ◈ Mouvement Quartz de haute précision",
+      "options": [
+        {
+          "name": "Couleurs",
+          "values": [
+            "Or Impérial",
+            "Bleu Obsidienne"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "44453399724120",
+          "sku": null,
+          "optionValues": [
+            "Or Impérial"
+          ],
+          "price": 16000,
+          "priceBefore": 18500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH4113157df49c46c38529251051c7b8fdG.jpg?v=1784898404"
+        },
+        {
+          "id": "44453399756888",
+          "sku": null,
+          "optionValues": [
+            "Bleu Obsidienne"
+          ],
+          "price": 16000,
+          "priceBefore": 18500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH84b6cabcc5f6437ab0dfd02e9fa776a7b.jpg?v=1784898404"
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH4113157df49c46c38529251051c7b8fdG.jpg?v=1784898404",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9eb53eb3bb364c5b836dc2dfd45762734.jpg?v=1784897504",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H38b245c1c8504c7386b4097909e0c61fh.jpg?v=1784897505",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH84b6cabcc5f6437ab0dfd02e9fa776a7b_c6051663-14f5-415f-b0fe-085e45a856b6.jpg?v=1784899789",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H6d03dc13752841729909c69208c521167.jpg?v=1784897505",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H6f39cfe91ee04bdd991aa2e0431cb980K.jpg?v=1784897505",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/variant_imageH84b6cabcc5f6437ab0dfd02e9fa776a7b.jpg?v=1784898404",
+          "alt": null
+        }
+      ],
+      "priceMin": 16000,
+      "priceMax": 16000,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8894235115608"
+      }
+    },
+    {
+      "slug": "ceinture-aurion",
+      "title": "AURION™ — La ceinture automatique en cuir véritable qui s'ajuste parfaitement à votre taille",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "Changez votre façon de porter une ceinture Une ceinture traditionnelle vous oblige à choisir entre plusieurs trous fixes. Trop serrée après un repas ? Trop lâche pendant la journée ? Ce problème appartient désormais au passé. ◈ Ajustement précis au millimètre près ◈ Design moderne et minimaliste ◈ Facile à mettre et à retirer ◈ Convient aux tenues professionnelles comme décontractées",
+      "options": [
+        {
+          "name": "Couleur",
+          "values": [
+            "Noire",
+            "Marron",
+            "Marron Claire"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "44439819092056",
+          "sku": null,
+          "optionValues": [
+            "Noire"
+          ],
+          "price": 12900,
+          "priceBefore": 15500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H7ae979e441574b20a96093e787bfba96U.jpg?v=1784809434"
+        },
+        {
+          "id": "44439819124824",
+          "sku": null,
+          "optionValues": [
+            "Marron"
+          ],
+          "price": 12900,
+          "priceBefore": 15500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hcacd78c099be44188d2c75140e6fea0at.jpg?v=1784809435"
+        },
+        {
+          "id": "44439819157592",
+          "sku": null,
+          "optionValues": [
+            "Marron Claire"
+          ],
+          "price": 12900,
+          "priceBefore": 15500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H35cf2ccf95854b9d91d66fab3d72cb7aV.png?v=1784809439"
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H7ae979e441574b20a96093e787bfba96U.jpg?v=1784809434",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H75a9a09f992f44edaa1113c4ecc90391g.jpg?v=1784809436",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H17ccb15c5f3d49cca0e3140c0947f3393.png?v=1784809439",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hcacd78c099be44188d2c75140e6fea0at.jpg?v=1784809435",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H35cf2ccf95854b9d91d66fab3d72cb7aV.png?v=1784809439",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H4a614d099d354776a8c071109c94553ba.png?v=1784809439",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H046cb5326a2c490f97adde86105ad62a3.jpg?v=1784809435",
+          "alt": null
+        }
+      ],
+      "priceMin": 12900,
+      "priceMax": 12900,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8890587512920"
+      }
+    },
+    {
+      "slug": "vaultpop",
+      "title": "VaultPop™ — Portefeuille Pop-Up RFID en cuir véritable",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "Ultra fin. Ultra pratique. Ultra sécurisé. Vous en avez assez des portefeuilles épais et désordonnés ? VaultPop™ combine un design moderne en aluminium, un accès instantané à vos cartes et une protection RFID pour garder vos données en sécurité au quotidien. ◈ Jusqu’à 15 cartes + billets ◈ Système pop‑up ◈ Protection RFID intégrée ◈ Design ultra fin",
+      "options": [
+        {
+          "name": "Couleur",
+          "values": [
+            "Brun Denime",
+            "Noire",
+            "Carbone"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "44438113124440",
+          "sku": null,
+          "optionValues": [
+            "Brun Denime"
+          ],
+          "price": 15900,
+          "priceBefore": 18500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb62816e8af6148b49eb576b1a04e0737W.jpg?v=1784805572"
+        },
+        {
+          "id": "44438113157208",
+          "sku": null,
+          "optionValues": [
+            "Noire"
+          ],
+          "price": 15900,
+          "priceBefore": 18500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb4f3282ed3f046ac8c7e96634124de30a.jpg?v=1784805576"
+        },
+        {
+          "id": "44438113091672",
+          "sku": null,
+          "optionValues": [
+            "Carbone"
+          ],
+          "price": 15900,
+          "priceBefore": 18500,
+          "available": true,
+          "image": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H79bef012221a4a7b8e1cbef42ebe435ak_9f84a0e7-53ff-4ec8-ad77-c1348773c47a.jpg?v=1784806925"
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb62816e8af6148b49eb576b1a04e0737W.jpg?v=1784805572",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H905c0fa1db334635b25d2d32e4b22600f.png?v=1784805581",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hf8ccd7338ef84edf8b1521b770de2939J.jpg?v=1784805569",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H79bef012221a4a7b8e1cbef42ebe435ak.jpg?v=1784805576",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H8a9e091b035c48d5ae07abc26cc0877b0.jpg?v=1784805575",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb4f3282ed3f046ac8c7e96634124de30a.jpg?v=1784805576",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H79bef012221a4a7b8e1cbef42ebe435ak_9f84a0e7-53ff-4ec8-ad77-c1348773c47a.jpg?v=1784806925",
+          "alt": null
+        }
+      ],
+      "priceMin": 15900,
+      "priceMax": 15900,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8890437435480"
+      }
+    },
+    {
+      "slug": "cotonpur",
+      "title": "Pack de 3 Boxers CotonPur™ : Le Confort Naturel au Quotidien",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "Redécouvrez le Vrai Confort avec le Boxer CotonPur Vous en avez assez des sous-vêtements qui irritent, retiennent la chaleur et se déforment ? Passez au niveau supérieur avec les boxers CotonPur™. Conçus avec un coton de première qualité, ils offrent une douceur inégalée, une respirabilité optimale et une durabilité exceptionnelle. ◈ 🌿 100% Coton Respirant ◈ 🛡️ Anti-Irritations & Hypoallergénique ◈ 💪 Durabilité Exceptionnelle ◈ ✨ Coupe Parfaite & Discrétion",
+      "options": [
+        {
+          "name": "Taille",
+          "values": [
+            "L: 40 - 55 kg",
+            "XL: 55 - 65kg",
+            "2XL: 65 - 80kg",
+            "3XL: 80 - 90kg"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "44437537161304",
+          "sku": null,
+          "optionValues": [
+            "L: 40 - 55 kg"
+          ],
+          "price": 14500,
+          "priceBefore": 18000,
+          "available": true,
+          "image": null
+        },
+        {
+          "id": "44437537194072",
+          "sku": null,
+          "optionValues": [
+            "XL: 55 - 65kg"
+          ],
+          "price": 14500,
+          "priceBefore": 18000,
+          "available": true,
+          "image": null
+        },
+        {
+          "id": "44437537226840",
+          "sku": null,
+          "optionValues": [
+            "2XL: 65 - 80kg"
+          ],
+          "price": 14500,
+          "priceBefore": 18000,
+          "available": true,
+          "image": null
+        },
+        {
+          "id": "44437537259608",
+          "sku": null,
+          "optionValues": [
+            "3XL: 80 - 90kg"
+          ],
+          "price": 14500,
+          "priceBefore": 18000,
+          "available": true,
+          "image": null
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H19e658aedfa04d689e4cd34ae453c6023.jpg?v=1784800089",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hba1aab2a09de4d969a2075dccf4c314fU.jpg?v=1784800089",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H71395de7aeeb4cf0ad2db02f206411bdf.jpg?v=1784800089",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/He3576d8b89744e0eb2c4ad505048be6fd.jpg?v=1784800089",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9fa1fbc2a88a40239ac6e9fa7af11c52a.jpg?v=1784800089",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/ChatGPT_Image_Sep_19_2026_09_16_31_AM.png?v=1789805833",
+          "alt": null
+        }
+      ],
+      "priceMin": 14500,
+      "priceMax": 14500,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8890361839704"
+      }
+    },
+    {
+      "slug": "arctic-vector",
+      "title": "Arctic Vector™ - L'Élégante Sacoche au Design Professionnel",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "Élevez Votre Quotidien avec Style et Fonctionnalité Découvrez l'Arctic Vector™, bien plus qu'une simple sacoche : c'est le compagnon idéal de l'homme moderne, conçu pour allier élégance avant-gardiste et performance inégalée. ◈ Protection Contre les Intempéries ◈ Design Minimaliste, Impact Maximal ◈ Organisation Intuitive et Optimisée ◈ Légèreté et Durabilité",
+      "options": [
+        {
+          "name": "Titre",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "43909587533912",
+          "sku": null,
+          "optionValues": [
+            "Default Title"
+          ],
+          "price": 19900,
+          "priceBefore": 32000,
+          "available": true,
+          "image": null
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9206049c540a47d8b08fdb1c453b9730N.jpg?v=1774408391",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Ha45e129368664e1388b26d0dd50d5ea8t.jpg?v=1774408412",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H98fdd3cd6ab6471398b43cca5deb09bbd.jpg?v=1774408302",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hbf8f6e3c276144d9ad8761d43d13814cm.jpg?v=1774408302",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H2784db8e624b4a60b6de708e61653caej.jpg?v=1774408302",
+          "alt": null
+        }
+      ],
+      "priceMin": 19900,
+      "priceMax": 19900,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8709498568792"
+      }
+    },
+    {
+      "slug": "born-pretty-kit",
+      "title": "Born Pretty – Kit Polygel Professionnel pour Ongles avec Lampe UV/LED – Gel d'Extension 15 ml",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "Le kit pour ongles le plus complet pour faire ses ongles a la maison. Découvrez le Kit Polygel BORN PRETTY, une solution tout-en-un pour créer des ongles tendances, résistants et d’aspect professionnel à domicile ou en salon. Idéal pour les débutants comme pour les pro. ◈ Facile à utiliser – modèle le gel sans coulure ◈ Finition professionnelle – effet gel brillant ◈ Kit complet – tout ce dont vous avez besoin inclus ◈ Résultats longue tenue – jusqu’à plusieurs semaines",
+      "options": [
+        {
+          "name": "Titre",
+          "values": [
+            "Default Title"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "43631257747544",
+          "sku": null,
+          "optionValues": [
+            "Default Title"
+          ],
+          "price": 14900,
+          "priceBefore": 19900,
+          "available": true,
+          "image": null
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hde82312c1a82493296080cb7877f95edE.jpg?v=1767430306",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H7851b140dec243c3a3fa41c8fc2148bfW.jpg?v=1767430306",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Haba7c4bbb8134509ae8c101f996c5b31L.jpg?v=1767430306",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hc9071aafe84e4fd38e079549673d14ebw.jpg?v=1767430306",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H04fb540e62644883bf303d06f3209015F.jpg?v=1767430308",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H61f070c6cdb140b094bc5ae1d58c0eb58.jpg?v=1767430307",
+          "alt": null
+        }
+      ],
+      "priceMin": 14900,
+      "priceMax": 14900,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8623542829144"
+      }
+    },
+    {
+      "slug": "silkflow",
+      "title": "SilkFlow™ – Lot de 6 boxers homme ultra frais et respirant",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "❄️ Dites adieu à la chaleur et à l’inconfort Le boxer SilkFlow™ vous offre une sensation de fraîcheur immédiate, même sous forte chaleur. ◈ Ultra léger ◈ Respirant ◈ Doux comme de la soie ◈ Invisible sous les vêtements",
+      "options": [
+        {
+          "name": "Sizes",
+          "values": [
+            "3XL (75 - 90 kg)",
+            "4XL (90 - 120 kg)"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "43922741788760",
+          "sku": null,
+          "optionValues": [
+            "3XL (75 - 90 kg)"
+          ],
+          "price": 19000,
+          "priceBefore": 24500,
+          "available": true,
+          "image": null
+        },
+        {
+          "id": "44128208846936",
+          "sku": null,
+          "optionValues": [
+            "4XL (90 - 120 kg)"
+          ],
+          "price": 19000,
+          "priceBefore": 24500,
+          "available": true,
+          "image": null
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H71bf5ad5b61d41b6ab404722d4d88221G_7808f353-407d-4193-bd58-961649401fa1.png?v=1774432421",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hd806765ef063433abaf363e4cd3d057aE_9f105b54-f4ba-4fcf-a98a-26a14b830bd9.png?v=1774432420",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/Hb899574e0e504d20880eac5b4ed5041ad_2f914a6d-c971-4c8d-8227-f5096e50dd83.png?v=1774432420",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/sizes.png?v=1781531496",
+          "alt": null
+        }
+      ],
+      "priceMin": 19000,
+      "priceMax": 19000,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8709727715416"
+      }
+    },
+    {
+      "slug": "hbelt",
+      "title": "H-Flex Belt™ – La ceinture sans boucle, confortable et ajustable",
+      "vendor": "Wonderly Africa",
+      "productType": null,
+      "description": "Découvrez la H-Flex Belt™, la ceinture révolutionnaire sans boucle qui vous offre confort et liberté totale. Fini la douleur au ventre, fini la boucle qui gêne : ◈ Confort absolu : fini la boucle qui rentre dans le ventre ◈ Ultra simple à utiliser : crochet + Velcro → prêt en 10 secondes ◈ Maintien parfait : votre pantalon reste en place toute la journée ◈ Unisexe & Taille Unique : s’adapte à toutes les morphologies",
+      "options": [],
+      "variants": [
+        {
+          "id": "44242930860120",
+          "sku": null,
+          "optionValues": [
+            "Default Title"
+          ],
+          "price": 11000,
+          "priceBefore": 13500,
+          "available": true,
+          "image": null
+        }
+      ],
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-10.jpg?v=1781530077",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-27-06.jpg?v=1781530077",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H8b8fdf3ab5fe4cd7ae456b0e8a4322a7J.png?v=1773097943",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/H9dd1fc5fd79248e29f6179b23915bc792.png?v=1773097943",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/main_imageHdb4a4cccb5a04fb7918ccf233cae21f9Y.png?v=1781530219",
+          "alt": null
+        },
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0675/9556/7192/files/photo_2026-06-15_14-26-49_10cbed50-50c5-4aff-8e4d-60b6335233fc.jpg?v=1781530659",
+          "alt": null
+        }
+      ],
+      "priceMin": 11000,
+      "priceMax": 11000,
+      "source": {
+        "platform": "shopify",
+        "domain": "jngiej-ax.myshopify.com",
+        "productId": "8650840571992"
+      }
+    }
+  ]
+}

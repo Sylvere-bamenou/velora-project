@@ -1,65 +1,86 @@
+import raw from './catalog.generated.json';
 import type { Market } from '@velora/design-system';
 
 /**
- * Catalogue de démonstration — Phase 0.
+ * Catalogue Velora, alimenté par l'import Shopify.
  *
- * Reproduit le produit du prototype Claude Design. Passera en table Supabase
- * (`products` / `variants`) en Phase 4, avec prix et stock par variante.
+ * Les données viennent de catalog.generated.json, produit par
+ * scripts/import-shopify-catalog.mjs. Ne pas coder de produit en dur ici :
+ * régénérer l'import à la place.
  */
 
-export interface PackOption {
-  id: string;
-  label: string;
-  qty: number;
-  /** Remise fractionnaire : 0.15 = −15 %. */
-  discount: number;
-  tag?: string;
+export interface CatalogImage {
+  src: string;
+  alt: string | null;
 }
 
-export interface Product {
-  slug: string;
-  category: string;
+export interface CatalogOption {
   name: string;
-  /** Prix unitaire, en unité entière de devise (le FCFA n'a pas de centimes). */
-  unitPrice: number;
-  unitPriceBefore: number;
-  colors: Array<{ name: string; swatch: string; image: string }>;
-  sizes: string[];
-  packs: PackOption[];
-  gallery: string[];
+  values: string[];
 }
 
-export const CHRONO: Product = {
-  slug: 'montre-chronographe-acier',
-  category: 'Montres · acier',
-  name: 'Montre chronographe acier',
-  unitPrice: 25_000,
-  unitPriceBefore: 35_000,
-  colors: [
-    { name: 'Noir', swatch: '#1b1813', image: '/assets/prod-chrono.svg' },
-    { name: 'Or', swatch: '#c8a24a', image: '/assets/prod-watch-gold.svg' },
-  ],
-  sizes: ['40 mm', '42 mm'],
-  packs: [
-    { id: 'x1', label: '×1', qty: 1, discount: 0 },
-    { id: 'x3', label: '×3', qty: 3, discount: 0.15, tag: '−15 %' },
-    { id: 'x5', label: '×5', qty: 5, discount: 0.2, tag: '−20 %' },
-  ],
-  gallery: ['/assets/photo-detail.svg', '/assets/photo-lifestyle.svg'],
-};
+export interface CatalogVariant {
+  id: string;
+  sku: string | null;
+  /** Valeurs alignées sur l'ordre de `product.options`. */
+  optionValues: string[];
+  price: number;
+  priceBefore: number | null;
+  available: boolean;
+  image: string | null;
+}
 
-const CATALOG: Record<string, Product> = { [CHRONO.slug]: CHRONO };
+export interface CatalogProduct {
+  slug: string;
+  title: string;
+  vendor: string | null;
+  productType: string | null;
+  description: string;
+  options: CatalogOption[];
+  variants: CatalogVariant[];
+  images: CatalogImage[];
+  priceMin: number;
+  priceMax: number;
+  source: { platform: string; domain: string; productId: string };
+}
 
-export function getProduct(slug: string): Product | undefined {
-  return CATALOG[slug];
+const PRODUCTS = (raw.products as CatalogProduct[]).filter((p) => p.variants.length > 0);
+
+const BY_SLUG = new Map(PRODUCTS.map((p) => [p.slug, p]));
+
+export function allProducts(): CatalogProduct[] {
+  return PRODUCTS;
+}
+
+export function getProduct(slug: string): CatalogProduct | undefined {
+  return BY_SLUG.get(slug);
+}
+
+/** Première valeur de chaque option — la variante affichée par défaut. */
+export function defaultSelection(product: CatalogProduct): string[] {
+  return product.options.map((o) => o.values[0] ?? '');
 }
 
 /**
- * Total d'un pack. Arrondi à l'entier : un montant FCFA à virgule est un bug
- * d'affichage, pas un arrondi acceptable.
+ * Résout la variante correspondant à une sélection d'options.
+ * Sans option (produit mono-variante), renvoie la seule variante.
  */
-export function packTotal(product: Product, pack: PackOption): number {
-  return Math.round(product.unitPrice * pack.qty * (1 - pack.discount));
+export function findVariant(
+  product: CatalogProduct,
+  selection: string[],
+): CatalogVariant {
+  if (product.options.length === 0) return product.variants[0]!;
+  const match = product.variants.find(
+    (v) => v.optionValues.join('') === selection.join(''),
+  );
+  return match ?? product.variants[0]!;
 }
+
+/** Image principale : celle de la variante si elle en a une, sinon la 1re du produit. */
+export function variantImage(product: CatalogProduct, variant: CatalogVariant): string | null {
+  return variant.image ?? product.images[0]?.src ?? null;
+}
+
+export const IMPORT_SOURCE = raw._source as { domain: string; importedAt: string; count: number };
 
 export const MARKETS: Market[] = ['bj', 'ci', 'ga'];

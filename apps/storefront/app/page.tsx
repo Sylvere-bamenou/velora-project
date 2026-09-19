@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { CHRONO } from '@/lib/catalog';
 import styles from './page.module.css';
 
 /**
@@ -15,7 +14,7 @@ export default function HomePage() {
       <p className={styles.tagline}>Mode masculine premium · Afrique</p>
 
       <nav className={styles.markets}>
-        <Link className={styles.market} href={`/bj/produit/${CHRONO.slug}`}>
+        <Link className={styles.market} href="/bj">
           <span className={styles.marketName}>Bénin</span>
           <span className={styles.marketMeta}>XOF · Livraison 24–48 h</span>
         </Link>

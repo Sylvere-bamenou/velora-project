@@ -30,8 +30,27 @@ packages/
   tracking/          event_id partagé, hachage PII, dédup Meta/TikTok
   fraud/             moteur de score — shadow mode par défaut
 design/              guide d'identité + prototype (Claude Design)
-supabase/            schéma SQL
+supabase/            schéma SQL + seed catalogue importé
+scripts/             import-shopify-catalog.mjs
 ```
+
+## Import du catalogue Shopify
+
+Le catalogue est aspiré depuis la boutique existante, sans identifiant :
+
+```bash
+pnpm import:catalog          # défaut : jngiej-ax.myshopify.com
+```
+
+Cela régénère `apps/storefront/lib/catalog.generated.json` (consommé par le
+storefront) et `supabase/seed-catalog.sql`. Le storefront affiche alors les
+produits réels sur `/bj` et `/bj/produit/<slug>`.
+
+Les commandes sont un autre niveau : elles ne sont pas publiques et exigent un
+token Admin API Shopify. Une fois le token dans `.env`
+(`SHOPIFY_ADMIN_TOKEN`), `GET /v1/shopify/status` passe à `connected` et
+`GET /v1/shopify/orders` renvoie les commandes. Procédure de création du token
+dans [`apps/api/src/lib/shopify.ts`](apps/api/src/lib/shopify.ts).
 
 ## Vérification
 
