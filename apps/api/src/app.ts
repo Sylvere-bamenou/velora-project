@@ -9,7 +9,6 @@ import { healthRouter } from './routes/health.js';
 import { marketsRouter } from './routes/markets.js';
 import { ordersRouter } from './routes/orders.js';
 import { trackingRouter } from './routes/tracking.js';
-import { shopifyRouter } from './routes/shopify.js';
 
 export function createApp(): Express {
   const app = express();
@@ -36,7 +35,6 @@ export function createApp(): Express {
   app.use('/v1', marketsRouter);
   app.use('/v1', ordersRouter);
   app.use('/v1', trackingRouter);
-  app.use('/v1', shopifyRouter);
 
   app.use(notFound);
   app.use(errorHandler);

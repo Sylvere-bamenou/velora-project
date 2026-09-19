@@ -18,3 +18,8 @@ pnpm-debug.log*
 .turbo/
 .vercel/
 *.tsbuildinfo
+
+# Migration Shopify : contient des données clients (PII). Généré localement,
+# appliqué une fois, jamais versionné.
+supabase/seed-orders.sql
+supabase/shopify-orders-dump.json

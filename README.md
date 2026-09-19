@@ -34,23 +34,35 @@ supabase/            schéma SQL + seed catalogue importé
 scripts/             import-shopify-catalog.mjs
 ```
 
-## Import du catalogue Shopify
+## Migration Shopify puis coupure
 
-Le catalogue est aspiré depuis la boutique existante, sans identifiant :
+Objectif : tout rapatrier une fois, puis ne plus dépendre de Shopify. L'API
+runtime est **indépendante de Shopify** ; toute la logique Shopify vit dans
+`scripts/`, exécutée une seule fois.
+
+**Catalogue** (public, sans identifiant) :
 
 ```bash
 pnpm import:catalog          # défaut : jngiej-ax.myshopify.com
 ```
 
-Cela régénère `apps/storefront/lib/catalog.generated.json` (consommé par le
-storefront) et `supabase/seed-catalog.sql`. Le storefront affiche alors les
-produits réels sur `/bj` et `/bj/produit/<slug>`.
+Aspire les produits, **télécharge les images en local**
+(`apps/storefront/public/assets/shopify`, plus aucun lien vers le CDN Shopify)
+et régénère `apps/storefront/lib/catalog.generated.json` + `supabase/seed-catalog.sql`.
+Le storefront affiche les produits réels sur `/bj` et `/bj/produit/<slug>`.
 
-Les commandes sont un autre niveau : elles ne sont pas publiques et exigent un
-token Admin API Shopify. Une fois le token dans `.env`
-(`SHOPIFY_ADMIN_TOKEN`), `GET /v1/shopify/status` passe à `connected` et
-`GET /v1/shopify/orders` renvoie les commandes. Procédure de création du token
-dans [`apps/api/src/lib/shopify.ts`](apps/api/src/lib/shopify.ts).
+**Commandes** (Admin API, token à usage unique) :
+
+```bash
+SHOPIFY_STORE_DOMAIN=... SHOPIFY_ADMIN_TOKEN=shpat_... pnpm migrate:orders
+```
+
+Importe tout l'historique dans `supabase/seed-orders.sql` (non versionné : il
+contient des données clients), puis Shopify peut être coupé. Procédure de
+création du token dans l'en-tête de
+[`scripts/migrate-shopify-orders.mjs`](scripts/migrate-shopify-orders.mjs).
+Après cette migration, les nouvelles commandes passent par le tunnel COD natif
+de Velora, pas par Shopify.
 
 ## Vérification
 

@@ -17,13 +17,10 @@ const schema = z.object({
   SUPABASE_URL: z.string().url().optional(),
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
 
-  // ─── Shopify · transition depuis la boutique existante ───
-  // Le catalogue s'aspire sans identifiant (endpoint public /products.json).
-  // Les commandes exigent un token Admin API : app personnalisée Shopify,
-  // scopes read_orders + read_customers. Voir apps/api/src/lib/shopify.ts.
-  SHOPIFY_STORE_DOMAIN: z.string().optional(),
-  SHOPIFY_ADMIN_TOKEN: z.string().optional(),
-  SHOPIFY_API_VERSION: z.string().default('2024-10'),
+  // Shopify n'a AUCUNE variable ici : l'API runtime est indépendante de
+  // Shopify. La migration one-shot (catalogue + historique commandes) vit
+  // dans scripts/ et lit ses identifiants directement dans l'environnement.
+  // Voir scripts/migrate-shopify-orders.mjs.
 
   // ─── Upstash Redis (bans, rate limiting) ───
   UPSTASH_REDIS_REST_URL: z.string().url().optional(),
